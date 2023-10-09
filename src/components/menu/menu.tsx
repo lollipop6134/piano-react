@@ -2,7 +2,7 @@ import './menu.css';
 
 export function Menu() {
     return (
-        <div id="container">
+        <div id="menu-container">
             <div id="left">
                 <img src="/images/logo.png"></img>
                 <button>Piano</button>

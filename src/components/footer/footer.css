@@ -1,0 +1,26 @@
+#footer {
+    margin-top: 5vw;
+    background-color: #F8E5CB;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    color: #8A3100;
+    align-items: center;
+    font-size: 1vw;
+    font-weight: bold;
+    padding: 0.5vw 0vw;
+}
+
+#footer img {
+    width: 6vw;
+}
+
+#socials img {
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#socials img:hover {
+    transform: translateY(-0.3vw);
+}

@@ -1,8 +1,8 @@
-button {
-    font-size: 1.3vw;
+#menu-container button {
+    font-size: 1.2vw;
     background-color: rgba(178, 34, 34, 0);
     color: #953700;
-    padding: 0.5vw 1vw;
+    padding: 0.4vw 1.3vw;
     border-radius: 5px;
     text-decoration:none;
     text-align:center;
@@ -16,23 +16,27 @@ button {
     font-weight: bold;
 }
 
-button:hover {
+#menu-container button:hover {
     background-position: 0 0;
     color:#fff;
 }
 
-#container, #left {
+#menu-container, #left {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-#container {
+#menu-container {
     margin-top: 2vw;
     width: 100%;
 }
 
 #left {
     width: 40%;
+}
+
+#left img {
+    width: 8vw;
 }
