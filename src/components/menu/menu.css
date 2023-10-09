@@ -16,6 +16,10 @@
     font-weight: bold;
 }
 
+a {
+    text-decoration: none;
+}
+
 #menu-container button:hover {
     background-position: 0 0;
     color:#fff;
