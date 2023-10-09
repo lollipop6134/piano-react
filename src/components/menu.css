@@ -1,0 +1,38 @@
+button {
+    font-size: 1.3vw;
+    background-color: rgba(178, 34, 34, 0);
+    color: #953700;
+    padding: 0.5vw 1vw;
+    border-radius: 5px;
+    text-decoration:none;
+    text-align:center;
+    display: block;
+    background-image: linear-gradient(to left,transparent,transparent 50%,#953700 50%,#953700);
+    background-position: 100% 0;
+    background-size: 200% 100%;
+    transition: all .25s ease-in;
+    border: 1px solid #953700;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-position: 0 0;
+    color:#fff;
+}
+
+#container, #left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#container {
+    margin-top: 2vw;
+    width: 100%;
+}
+
+#left {
+    width: 40%;
+}
