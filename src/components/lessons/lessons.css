@@ -1,0 +1,22 @@
+#lessons {
+    margin-top: 2vw;
+}
+
+.lesson {
+    border: 0.4vw solid #5F2300;
+    border-radius: 5px;
+    text-align: center;
+    padding: 1.5vw 2vw;
+    color: #5F2300;
+    font-weight: bold;
+    margin-top: 3vw;
+    cursor: pointer;
+    width: 22%;
+    background-color: #FFDEB2;
+    transition: 0.5s;
+    font-size: 1vw;
+}
+
+.lesson:hover {
+    transform: translateY(-0.5vw);
+}
