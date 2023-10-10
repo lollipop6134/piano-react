@@ -14,8 +14,7 @@ export function Menu() {
             <Link to="/account"><button>Sign Up</button></Link>
         </div>
        
-        <Outlet/>
-        <Footer/>
+        <Outlet />
         </>
     )
 }

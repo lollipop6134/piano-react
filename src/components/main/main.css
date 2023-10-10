@@ -149,6 +149,7 @@
 
 #section6 {
     margin-top: 5vw;
+    margin-bottom: 5vw;
 }
 
 #section6 .main_img {
@@ -162,5 +163,5 @@
 }
 
 @media screen and (orientation: portrait) {
-
+    
 }
