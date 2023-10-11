@@ -1,3 +1,4 @@
+import { Footer } from '../footer/footer';
 import './account.css';
 
 export function Account() {
@@ -16,6 +17,7 @@ export function Account() {
                     <button>Sign up</button>
                     <button>Log in</button>
             </div>
+            <Footer />
         </>
     )
 }

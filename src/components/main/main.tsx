@@ -1,3 +1,4 @@
+import { Footer } from '../footer/footer';
 import './main.css';
 
 export function Main() {
@@ -90,6 +91,7 @@ export function Main() {
                     <img src="/images/Vector4.png" alt="vector 4" className='vector' />
                 </div>
             </div>
+            <Footer />
         </>
     )
 }

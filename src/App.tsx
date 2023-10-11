@@ -21,7 +21,6 @@ function App() {
             <Route path='/account' element={<Account />} />
           </Routes>
         </div>
-        <Footer />
       </div>
     </>
   );
