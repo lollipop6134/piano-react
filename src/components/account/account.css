@@ -11,6 +11,7 @@ form {
     font-weight: bold;
     margin-top: 1vw;
     border-radius: 5px;
+    position: relative;
 }
 
 form p {
@@ -82,7 +83,47 @@ form button:hover {
     color: #FFFFFF;
 }
 
-form .vector {
-    z-index: -10;
+#formVector {
+    z-index: 0;
     width: 70vw;
+}
+
+@media screen and (orientation: portrait) {
+    form {
+        width: 80vw;
+        padding: 4vw 10vw;
+        margin-top: 7vw;
+    }
+    
+    form p {
+        font-size: 7vw;
+    }
+    
+    form input {
+        border-bottom: 2px solid #8A4200;
+        width: 95%;
+        font-size: 6vw;
+    }
+    
+    form button {
+        font-size: 4vw;
+        padding: 0.8vw 2vw;
+        border: 1px solid #953700;
+        margin-top: 8vw;
+        margin-bottom: 8vw;
+    }
+    
+    form span {
+        font-size: 4vw;
+    }
+    
+    #formButtons button {
+        width: 40vw;
+        font-size: 5vw;
+        padding: 1.6vw 4vw;
+    }
+    
+    #formVector {
+        display: none;
+    }
 }

@@ -25,3 +25,24 @@
 #socials img:hover {
     transform: translateY(-0.2vw);
 }
+
+@media screen and (orientation: portrait) {
+    #footer {
+        font-size: 3vw;
+        padding: 1.5vw 0vw;
+    }
+    
+    #footer img {
+        width: 16vw;
+    }
+    
+    #socials img {
+        transition: 0.3s;
+        width: 5.4vw;
+        margin-right: 3vw;
+    }
+    
+    #socials img:hover {
+        transform: translateY(-0.6vw);
+    }
+}

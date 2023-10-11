@@ -60,12 +60,17 @@
 
     #rotate {
         display: flex;
-        color: #5c3a26;
+        flex-direction: column;
+        color: #582406;
         font-size: 5vw;
         font-weight: bold;
         text-align: center;
         justify-content: center;
         align-items: center;
         height: 100vw;
+    }
+
+    #rotate img {
+        width: 20vw;margin-top: 10vw;
     }
 }

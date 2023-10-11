@@ -13,7 +13,6 @@ export function Menu() {
             </div>
             <Link to="/account"><button>Sign Up</button></Link>
         </div>
-       
         <Outlet />
         </>
     )

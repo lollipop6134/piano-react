@@ -6,7 +6,6 @@ html, body {
 }
 
 body {
-  min-height: 100vh;
   margin: 0vw 13vw;
 }
 
@@ -14,12 +13,8 @@ img {
   user-select: none;
 }
 
-.wrapper {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.content {
-  flex-grow: 1;
+@media screen and (orientation: portrait) {
+  body {
+    margin: 0 3vw;
+  }
 }
