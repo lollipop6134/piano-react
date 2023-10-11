@@ -17,9 +17,11 @@
 
 #socials img {
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.3s;
+    width: 1.7vw;
+    margin-right: 1vw;
 }
 
 #socials img:hover {
-    transform: translateY(-0.3vw);
+    transform: translateY(-0.2vw);
 }

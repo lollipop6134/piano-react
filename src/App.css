@@ -12,7 +12,6 @@ body {
 
 img {
   user-select: none;
-  pointer-events: none;
 }
 
 .wrapper {

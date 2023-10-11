@@ -6,9 +6,9 @@ export function Footer() {
             <img src="/images/Logo.png" alt="" />
             <div>2024 Kirill Tarochkin</div>
             <div id="socials">
-                <img src="/images/" alt="instagram" />
-                <img src="/images/" alt="telegram" />
-                <img src="/images/" alt="linkedin" />
+                <img src="/images/Instagram.png" alt="instagram" />
+                <img src="/images/Telegram.png" alt="telegram" />
+                <img src="/images/Linkedin.png" alt="linkedin" />
             </div>
         </div>
     )
