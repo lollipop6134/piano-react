@@ -26,7 +26,7 @@ form input {
     font-size: 1.5vw;
     color: #8A3100;
     font-weight: bold;
-    margin-top: 2vw;
+    margin-top: 1.5vw;
 }
 
 form button {
@@ -46,7 +46,7 @@ form button {
     cursor: pointer;
     font-weight: bold;
     margin-top: 4vw;
-    margin-bottom: 2vw;
+    margin-bottom: 1vw;
 }
 
 form span {
@@ -75,7 +75,6 @@ form button:hover {
     padding: 0.8vw 2vw;
     border-radius: 5px;
     transition: 0.3s;
-    margin-bottom: 0.9vw;
 }
 
 #formButtons button:hover {
@@ -86,6 +85,10 @@ form button:hover {
 #formVector {
     z-index: 0;
     width: 70vw;
+}
+
+.active {
+    background-color: #8A3100;
 }
 
 @media screen and (orientation: portrait) {

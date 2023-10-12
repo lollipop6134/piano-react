@@ -75,7 +75,7 @@ function playNote(note: string) {
     }
 
 keys.forEach(key => {
-    key.addEventListener('mousedown', () => {
+    key.addEventListener('click', () => {
       const note = (key as HTMLElement).dataset.note;
       if (note) playNote(note);
     });
