@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
 import { Menu } from './components/menu/menu';
-import { Main } from './components/main/main';
-import { Lessons } from './components/lessons/lessons';
+import { Main } from './pages/main/main';
+import { Lessons } from './pages/lessons/lessons';
 import { Routes, Route } from 'react-router-dom';
-import { Account } from './components/account/account';
-import { Footer } from './components/footer/footer';
-import { Piano } from './components/piano/piano';
+import { Account } from './pages/account/account';
+import { Piano } from './pages/piano/piano';
 
 function App() {
   return (
@@ -18,7 +17,7 @@ function App() {
             <Route path='/' element={<Main />} />
             <Route path='/piano' element={<Piano />} />
             <Route path='/lessons' element={<Lessons />} />
-            <Route path='/account' element={<Account />} />
+            <Route path='/auth' element={<Account />} />
           </Routes>
         </div>
       </div>

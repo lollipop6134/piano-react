@@ -1,0 +1,132 @@
+form {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FCF8F2;
+    z-index: 10;
+    width: 32vw;
+    padding: 2vw 7vw;
+    color: #8A3100;
+    font-weight: bold;
+    margin-top: 1vw;
+    border-radius: 5px;
+    position: relative;
+}
+
+form p {
+    font-size: 2vw;
+}
+
+form input {
+    border: none;
+    background-color: #FCF8F2;
+    border-bottom: 2px solid #8A4200;
+    width: 25vw;
+    font-size: 1.5vw;
+    color: #8A3100;
+    font-weight: bold;
+    margin-top: 1.5vw;
+}
+
+form button {
+    font-size: 1.2vw;
+    background-color: rgba(178, 34, 34, 0);
+    color: #953700;
+    padding: 0.4vw 1.3vw;
+    border-radius: 5px;
+    text-decoration:none;
+    text-align:center;
+    display: block;
+    background-image: linear-gradient(to left,transparent,transparent 50%,#953700 50%,#953700);
+    background-position: 100% 0;
+    background-size: 200% 100%;
+    transition: all .25s ease-in;
+    border: 1px solid #953700;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 4vw;
+    margin-bottom: 1vw;
+}
+
+form span {
+    font-size: 0.8vw;
+}
+
+form button:hover {
+    background-position: 0 0;
+    color:#fff;
+}
+
+#formButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#formButtons button {
+    width: 16vw;
+    cursor: pointer;
+    font-size: 1.5vw;
+    background-color:#FCF8F2;
+    border: none;
+    color: #8A4200;
+    font-weight: bold;
+    padding: 0.8vw 2vw;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+#formButtons button:hover {
+    background-color: #8A4200;
+    color: #FFFFFF;
+}
+
+#formVector {
+    z-index: 0;
+    width: 70vw;
+}
+
+.active {
+    background-color: #8A3100;
+}
+
+@media screen and (orientation: portrait) {
+    form {
+        width: 80vw;
+        padding: 4vw 10vw;
+        margin-top: 7vw;
+    }
+    
+    form p {
+        font-size: 7vw;
+    }
+    
+    form input {
+        border-bottom: 2px solid #8A4200;
+        width: 95%;
+        font-size: 6vw;
+    }
+    
+    form button {
+        font-size: 4vw;
+        padding: 0.8vw 2vw;
+        border: 1px solid #953700;
+        margin-top: 8vw;
+        margin-bottom: 8vw;
+    }
+    
+    form span {
+        font-size: 4vw;
+    }
+    
+    #formButtons button {
+        width: 40vw;
+        font-size: 5vw;
+        padding: 1.6vw 4vw;
+    }
+    
+    #formVector {
+        display: none;
+    }
+}

@@ -11,7 +11,7 @@ export function Menu() {
                 <Link to="/piano"><button>Piano</button></Link>
                 <Link to="/lessons"><button>Lessons</button></Link>
             </div>
-            <Link to="/account"><button>Sign Up</button></Link>
+            <Link to="/auth"><button>Sign Up</button></Link>
         </div>
         <Outlet />
         </>
