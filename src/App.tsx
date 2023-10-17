@@ -6,6 +6,7 @@ import { Lessons } from './pages/lessons/lessons';
 import { Routes, Route } from 'react-router-dom';
 import { Account } from './pages/account/account';
 import { Piano } from './pages/piano/piano';
+import { LessonPage } from './pages/lessonPage/lessonPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/piano' element={<Piano />} />
             <Route path='/lessons' element={<Lessons />} />
             <Route path='/auth' element={<Account />} />
+            <Route path='/lesson/:id' element={<LessonPage />} />
           </Routes>
         </div>
       </div>

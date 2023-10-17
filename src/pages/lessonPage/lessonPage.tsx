@@ -1,38 +1,46 @@
 import './lessonPage.css';
-import { ILessonPage } from '../../models';
+import { useParams } from 'react-router-dom';
+import { lessonPages } from '../../data/lessonPages';
 import { Footer } from '../../components/footer/footer';
 
-interface LessonPageProps {
-    lessonPage: ILessonPage
-}
+export function LessonPage() {
+    const { id } = useParams<{ id?: string }>();
 
-const LessonPage: React.FC<LessonPageProps> = ({ lessonPage }) => {
+    if (!id) {
+        return <div className='notFound'>Урок не найден</div>
+    }
+    const lesson = lessonPages.find((l) => l.id === parseInt(id, 10));
+
+    if (!lesson) {
+        return <div className='notFound'>Урок не найден :(</div>;
+    }
+
     return (
         <>
         <div id="lessonPage">
             <div id="lessonTitle">
-                {lessonPage.title}
+                {lesson.title}
             </div>
             <div className='lessonSection'>
                 <div className='lessonParagraph'>
-                    {lessonPage.text1}
+                    {lesson.text1}
                 </div>
-                <img src='./images/${lessonPage.img1}.jpg' alt="Question Capy" className='main_img'/>
+                <img src={lesson.img1} alt="1" className='main_img'/>
             </div>
             <div className='lessonSection'>
-                {lessonPage.text2}
+                {lesson.text2}
             </div>
             <div className='lessonSection'>
-                <img src='./images/${lessonPage.img2}.jpg' alt="piano keyboard" className='main_img'/>
+                <img src={lesson.img2} alt="2" className='main_img'/>
                 <div className='lessonParagraph'>
-                    {lessonPage.text3}
+                    {lesson.text3}
                 </div>
             </div>
             <div className='lessonSection'>
                 <div className='lessonParagraph'>
-                    {lessonPage.text4}
+                    {lesson.text4}
                 </div>
-                <img src='./images/${lessonPage.img3}.jpg' alt="octave" className='main_img'/>
+                <img src={lesson.img3} alt="3" className='main_img'/>
             </div>
             <button className='main-button'>Practice!</button>
         </div>
@@ -40,5 +48,3 @@ const LessonPage: React.FC<LessonPageProps> = ({ lessonPage }) => {
         </>
     )
 }
-
-export default LessonPage;

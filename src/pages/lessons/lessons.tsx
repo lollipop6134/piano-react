@@ -1,13 +1,16 @@
 import './lessons.css';
-import { lessons } from '../../data/lessons';
-import { Lesson } from '../../components/lesson/lesson';
 import { Footer } from '../../components/footer/footer';
+import { lessonPages } from '../../data/lessonPages';
+import { Link } from 'react-router-dom';
 
 export function Lessons() {
+
     return (
         <>
-            <div id="lessons">
-                {lessons.map(lesson => <Lesson lesson={lesson} key={lesson.id} />)}
+            <div className='lessons'>
+                {lessonPages.map((lesson) => (
+                    <Link to={`/lesson/${lesson.id}`} className='lesson' key={lesson.id}>Lesson {lesson.id}<br />{lesson.subtitle}</Link>
+                ))}
             </div>
             <Footer />
         </>

@@ -82,7 +82,7 @@ export function Piano() {
                 <div className='key white' onClick={() => handleNoteClick('D3')} id='D3'>V</div>
                 <div className='key black' onClick={() => handleNoteClick('DSharp3')} style={{'left': '71.3vmax'}} id='DSharp3'>G</div>
                 <div className='key white' onClick={() => handleNoteClick('E3')} id='E3'>B</div>
-                <div className='key white' onClick={() => handleNoteClick('F3')} id='F'>N</div>
+                <div className='key white' onClick={() => handleNoteClick('F3')} id='F3'>N</div>
                 <div className='key black' onClick={() => handleNoteClick('FSharp3')} style={{'left': '80.4vmax'}} id='FSharp3'>J</div>
                 <div className='key white' onClick={() => handleNoteClick('G3')} id='G3'>M</div>
                 <div className='key black' onClick={() => handleNoteClick('GSharp3')} style={{'left': '85vmax'}} id='GSharp3'>K</div>

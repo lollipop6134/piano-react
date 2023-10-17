@@ -1,8 +1,47 @@
-#lessons {
+.lessons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 1vw;
     height: 100%;
-    margin-bottom: 3vw;
+    margin: 3vw 0vw;
+}
+
+.lesson {
+    width: 20%;
+    background-color: #FFDEB2;
+    border-radius: 5px;
+    border: 0.7vmin solid #5F2300;
+    margin: 2vmin 1.5vmin;
+    padding: 1.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1vw;
+    font-weight: bold;
+    color: #5F2300;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.lesson:hover {
+    transform: translateY(-0.5vw);
+}
+
+@media screen and (orientation: portrait) {
+    .lessons {
+        margin: 7vw 0;
+    }
+
+    .lesson {
+        width: 80vmin;
+        font-size: 5.5vw;
+        border: 1vmin solid #5F2300;
+        padding: 4vw;
+    }
+
+    .lesson:hover {
+        transform: translateY(-1.7vw);
+    }
 }

@@ -29,3 +29,36 @@
 #lessonPage .main_img {
     width: 35%;;
 }
+
+.notFound {
+    display: flex;
+    flex-direction: column;
+    font-size: 4vw;
+    color: #5F2300;
+    align-items: center;
+}
+
+@media screen and (orientation: portrait) {
+    #lessonPage {
+        font-size: 4.5vw;
+    }
+
+    #lessonTitle {
+        margin: 5vw 0vw;
+        font-size: 6.5vw;
+    }
+
+    .lessonSection {
+        flex-direction: column;
+        margin-bottom: 0vw;
+    }
+
+    .lessonParagraph {
+        width: 95%;
+    }
+
+    #lessonPage .main_img {
+        margin: 7vw 0vw;
+        width: 85%;;
+    }
+}
