@@ -2,9 +2,12 @@ import './lessonPage.css';
 import { useParams } from 'react-router-dom';
 import { lessonPages } from '../../data/lessonPages';
 import { Footer } from '../../components/footer/footer';
+import { useState } from 'react';
+import { Piano } from '../../components/piano/piano';
 
 export function LessonPage() {
     const { id } = useParams<{ id?: string }>();
+    const [practiceMode, setPracticeMode] = useState(false);
 
     if (!id) {
         return <div className='notFound'>Урок не найден</div>
@@ -17,7 +20,11 @@ export function LessonPage() {
 
     return (
         <>
-        <div id="lessonPage">
+        {practiceMode ? (
+            <Piano />
+        ) : (
+            <>
+            <div id="lessonPage">
             <div id="lessonTitle">
                 {lesson.title}
             </div>
@@ -42,9 +49,11 @@ export function LessonPage() {
                 </div>
                 <img src={lesson.img3} alt="3" className='main_img'/>
             </div>
-            <button className='main-button'>Practice!</button>
+            <button className='main-button' onClick={() => {setPracticeMode(true)}}>Practice!</button>
         </div>
         <Footer />
+        </>
+        )}
         </>
     )
 }

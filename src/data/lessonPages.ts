@@ -9,6 +9,7 @@ export interface Lesson {
     img1: string;
     img2: string;
     img3: string;
+    notes: string[];
 }
 
 export const lessonPages: Lesson[] = [
@@ -35,7 +36,8 @@ export const lessonPages: Lesson[] = [
         they decided to start naming notes with it.`,
         img1: '../images/Lesson11.jpg',
         img2: '../images/Lesson12.jpg',
-        img3: '../images/Lesson13.jpg'
+        img3: '../images/Lesson13.jpg',
+        notes: ['A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2']
     },
     {
         id: 2,
@@ -57,7 +59,8 @@ export const lessonPages: Lesson[] = [
         lines appear (as in the case of the note C). Sounds easy, right?`,
         img1: '../images/Lesson21.jpg',
         img2: '../images/Lesson22.jpg',
-        img3: '../images/Lesson23.jpg'
+        img3: '../images/Lesson23.jpg',
+        notes: []
     },
     {
         id: 3,
@@ -69,7 +72,8 @@ export const lessonPages: Lesson[] = [
         text4: ``,
         img1: '../images/Lesson31.jpg',
         img2: '../images/Lesson32.jpg',
-        img3: '../images/Lesson33.jpg'
+        img3: '../images/Lesson33.jpg',
+        notes: []
     },
     {
         id: 4,
@@ -92,6 +96,7 @@ export const lessonPages: Lesson[] = [
         to the end. Alterations play an important role in musical notation, allowing us to create a variety of musical sounds.`,
         img1: '../images/Lesson41.jpg',
         img2: '../images/Lesson42.jpg',
-        img3: '../images/Lesson43.jpg'
+        img3: '../images/Lesson43.jpg',
+        notes: []
     },
 ]
