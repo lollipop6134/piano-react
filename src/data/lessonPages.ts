@@ -53,7 +53,7 @@ export const lessonPages: Lesson[] = [
         clefs are placed at the beginning of the musical string.`,
         text3: `Let's talk about the treble clef for now. With the help of a treble clef, the sounds corresponding to the
         right (upper) half of the keyboard are written. The treble clef is also called the G clef, since its curl surrounds
-        the line on which the sol note of the first octave is located.`,
+        the line on which the G note of the first octave is located.`,
         text4: `Knowing this, we can easily determine the location on the staff of other sounds in the treble clef! Let's go
         down to the note of C and go up to the note of B. Sometimes not all notes fit into the sheet music, so additional
         lines appear (as in the case of the note C). Sounds easy, right?`,
@@ -66,10 +66,20 @@ export const lessonPages: Lesson[] = [
         id: 3,
         subtitle: 'Musical notation p. 2',
         title: 'Musical notation. Part 2',
-        text1: ``,
-        text2: ``,
-        text3: ``,
-        text4: ``,
+        text1: `Wow, you were incredible in the last lesson! It doesn't seem that difficult, right? But even capybara understands
+        that one clef is too little to become a real pianist, so let's move on! In this lesson you will get acquainted with the
+        bass clef and the recording of notes in it. Let's go!`,
+        text2: `The bass key records low sounds that relate to the left side of the piano keyboard. In this key, the curl begins
+        on the fourth line of the note-bearer. In the minor octave on this line is the note F. Here the notes are recorded according
+        to the same principle as in the treble clef: higher — high notes, and lower — low notes! Unbelievable! So, on the lines of
+        the note-bearer there are notes E (on the additional lower), G, B, D, F, A, C (On the additional upper).`,
+        text3: `By the way, as you may have noticed, the octaves on the keyboard are side by side, so the recording of notes in
+        different keys and octaves echoes. The note C on the additional upper line in the bass clef is simultaneously the note C
+        on the additional lower line in the treble clef.`,
+        text4: `Notes F, A, C, E, G, B are distributed between the lines in the bass clef. Usually, it is more difficult to remember
+        the notes of the bass clef than the violin clef, but there is a life hack (although it does not help everyone, sometimes it is
+        easier to just learn). If you know how notes are written in the treble clef, then to read the notes of the bass clef, you
+        can raise the readable notes by 2.`,
         img1: '../images/Lesson31.jpg',
         img2: '../images/Lesson32.jpg',
         img3: '../images/Lesson33.jpg',
@@ -99,4 +109,30 @@ export const lessonPages: Lesson[] = [
         img3: '../images/Lesson43.jpg',
         notes: []
     },
+    {
+        id: 5,
+        subtitle: 'Consolidation',
+        title: 'Consolidation',
+        text1: `Hello! This is your first lesson at this platform. This means that you
+        are a huge fellow and are already taking the first steps to becoming a very cool!
+        In this lesson, you will get acquainted with the basics of the instrument and keys,
+        as well as be able to look into the future and find out what lies ahead.`,
+        text2: `I want to say right away that playing a virtual piano, you will not be able to
+        feel all the charms of playing this wonderful instrument, but you will be able to learn
+        the theoretical foundations and decide for yourself whether you want to become a real pianist.
+        In this short course, you will learn how black keys differ from white ones, why there are so
+        many of them, learn about the signs of alterations and even play your first melodies. Not bad? Let's go!`,
+        text3: `The standard piano has 88 keys (both white and black), which are divided into octaves.
+        One octave includes 7 white and 5 black keys. The white keys are the main musical notes (A, B, C, D, E, F, G),
+        and the black keys are their semitones (sharps and flats). We will start learning the basic notes already
+        in this lesson, and we will touch the black keys a little later.`,
+        text4: `The octave begins with the note C and ends with the note B. I know it looks strange,
+        because why not start with the first letter in the alphabet, A? The thing is that the world
+        community of musicians has determined that A is the most perceived note by human hearing, so
+        they decided to start naming notes with it.`,
+        img1: '../images/Lesson11.jpg',
+        img2: '../images/Lesson12.jpg',
+        img3: '../images/Lesson13.jpg',
+        notes: ['A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2']
+    }
 ]
