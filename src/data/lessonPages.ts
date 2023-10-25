@@ -113,26 +113,24 @@ export const lessonPages: Lesson[] = [
         id: 5,
         subtitle: 'Consolidation',
         title: 'Consolidation',
-        text1: `Hello! This is your first lesson at this platform. This means that you
-        are a huge fellow and are already taking the first steps to becoming a very cool!
-        In this lesson, you will get acquainted with the basics of the instrument and keys,
-        as well as be able to look into the future and find out what lies ahead.`,
-        text2: `I want to say right away that playing a virtual piano, you will not be able to
-        feel all the charms of playing this wonderful instrument, but you will be able to learn
-        the theoretical foundations and decide for yourself whether you want to become a real pianist.
-        In this short course, you will learn how black keys differ from white ones, why there are so
-        many of them, learn about the signs of alterations and even play your first melodies. Not bad? Let's go!`,
-        text3: `The standard piano has 88 keys (both white and black), which are divided into octaves.
-        One octave includes 7 white and 5 black keys. The white keys are the main musical notes (A, B, C, D, E, F, G),
-        and the black keys are their semitones (sharps and flats). We will start learning the basic notes already
-        in this lesson, and we will touch the black keys a little later.`,
-        text4: `The octave begins with the note C and ends with the note B. I know it looks strange,
-        because why not start with the first letter in the alphabet, A? The thing is that the world
-        community of musicians has determined that A is the most perceived note by human hearing, so
-        they decided to start naming notes with it.`,
-        img1: '../images/Lesson11.jpg',
-        img2: '../images/Lesson12.jpg',
-        img3: '../images/Lesson13.jpg',
+        text1: `Congratulations, you've come a long way! Having memorized everything that you learned in the previous 4 lessons,
+        you will be able to read absolutely all the recorded notes! There will be no new information in this lesson, let's just
+        briefly repeat what you already know and practice a little more.`,
+        text2: `A full octave consists of twelve notes going in the following order: C, C#(D♭), D, D#(E♭), E, F, F#(G♭), G,
+        G#(A♭), A, A#(B♭), B. White keys are responsible for ordinary notes, and black keys are responsible for notes with
+        alterations. On the letter, the notes are indicated by circles and recorded on the sheet music. The treble clef is
+        responsible for the high notes, and the bass clef is responsible for the lower notes. Sharp (#) increases the pitch of
+        the note by half a tone, Flat (♭) lowers the pitch of the note by half a tone and Bekar (♮ ) cancels the sharp or flat
+        effect and returns the note to its original pitch.`,
+        text3: `The curl of the treble clef begins on the 2nd line of the musical stanza, on which the note G of the first octave
+        stands. On the first lower extension line of the treble clef is the note C of the first octave, and on the first upper
+        extension line is the note A of the second octave.`,
+        text4: `The curl of the bass clef is located on the 4th line of the notation, corresponding to the F note of the minor
+        octave. On the first lower extension line of the bass clef is the note E of the large octave, and on the first upper extension
+        line is the note C of the first octave.`,
+        img1: '../images/Lesson41.jpg',
+        img2: '../images/Lesson52.jpg',
+        img3: '../images/Lesson53.jpg',
         notes: ['A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2']
     }
 ]

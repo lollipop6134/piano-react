@@ -1,21 +1,17 @@
-import { notes } from '../../data/notes';
-import { Howl } from 'howler';
-import { Piano } from '../../components/piano/piano';
-
-const sounds: { [key: string]: Howl } = {};
-notes.forEach((note) => {
-  sounds[note] = new Howl({
-    src: [`/audio/${note}.mp3`],
-    preload: true,
-  });
-});
-
+import React from "react"
+import Piano from "../../components/piano/piano"
+import { notes } from "../../data/notes"
 
 export function PianoPage() {
+  
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      const audio = new Audio(`audio/${e.currentTarget.value}.mp3`)
+      audio.play();
+    }
 
     return (
         <>
-          <Piano />
+          <Piano notes={notes} clickHandler={handleClick}/>
         </>
     )
 }

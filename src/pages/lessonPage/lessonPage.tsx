@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { lessonPages } from '../../data/lessonPages';
 import { Footer } from '../../components/footer/footer';
 import { useState } from 'react';
-import { Piano } from '../../components/piano/piano';
+import Piano from '../../components/piano/piano';
+import { notes } from '../../data/notes';
 
 export function LessonPage() {
     const { id } = useParams<{ id?: string }>();
@@ -18,10 +19,15 @@ export function LessonPage() {
         return <div className='notFound'>Урок не найден :(</div>;
     }
 
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const audio = new Audio(`/audio/${e.currentTarget.value}.mp3`)
+        audio.play();
+      }
+
     return (
         <>
         {practiceMode ? (
-            <Piano />
+            <Piano notes={notes} clickHandler={handleClick}/>
         ) : (
             <>
             <div id="lessonPage">

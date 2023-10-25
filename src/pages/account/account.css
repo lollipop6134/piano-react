@@ -87,7 +87,7 @@ form button:hover {
     width: 70vw;
 }
 
-.active {
+#formButtons button.active {
     background-color: #8A3100;
 }
 
