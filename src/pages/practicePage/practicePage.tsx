@@ -1,7 +1,7 @@
 import React from "react"
 import Piano from "../../components/piano/piano"
 import { notes } from "../../data/notes"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { keyboard } from "../../data/notes";
 import { Howl } from "howler";
 import './practicePage.css';
@@ -21,39 +21,28 @@ type Props = {
   }
 
 const PracticePage: React.FC<Props> = ({ practiceNotes }) => {
+    const [currentNoteIndex, setCurrentNoteIndex] = useState(0);
+    const [feedbackMessage, setFeedbackMessage] = useState("");
+    const randomNotes = useState(() => practiceNotes.sort(() => Math.random() - 0.5))[0];
 
-    const randomNotes = practiceNotes.sort(() => Math.random() - 0.5);
-    let currentNoteIndex = 0;
     const badWords = ['No.', 'Try again!', 'Eww...', 'Bruh.'];
     const goodWords = ["Cool!", "You're so smart!", 'Good!', "Incredible!"];
 
-    const currentNoteElement = document.getElementById("currentNote");
-    const feedbackElement = document.getElementById("feedback");
+    function setCurrentNoteElement(): string {
+        if (currentNoteIndex < 15) {
+            return "Play this note: " + (randomNotes[currentNoteIndex])[0] + " of the " + ((randomNotes[currentNoteIndex].length) >= 2 ? randomNotes[currentNoteIndex][1] : "minor") + " octave";
+        } else {
+            return "Lesson complete!";
+        }
+    }
 
     function checkNote(note: string) {
         const currentNote = randomNotes[currentNoteIndex];
         if (note === currentNote) {
-            if (feedbackElement) {
-                feedbackElement.textContent = goodWords.sort(() => Math.random() - 0.5)[0];
-            } else {
-                console.log("что-то не так(((((((")
-            }
-            currentNoteIndex++;
-            if (currentNoteIndex < 15) {
-                if (currentNoteElement) {
-                    currentNoteElement.textContent = "Play this note: " + (randomNotes[currentNoteIndex])[0] + " of the " + ((randomNotes[currentNoteIndex].length) >= 2 ? randomNotes[currentNoteIndex][1] : "minor") + " octave";
-                }
-            } else {
-                if (currentNoteElement) {
-                    currentNoteElement.textContent = "Lesson complete!";
-                }
-            }
-        }
-        else {
-            if (feedbackElement)
-            {
-                feedbackElement.textContent = badWords.sort(() => Math.random() - 0.5)[0];
-            }
+            setCurrentNoteIndex(currentNoteIndex + 1);
+            setFeedbackMessage(goodWords[Math.floor(Math.random() * goodWords.length)]);
+        } else {
+            setFeedbackMessage(badWords[Math.floor(Math.random() * badWords.length)]);
         }
     }
 
@@ -81,7 +70,7 @@ const PracticePage: React.FC<Props> = ({ practiceNotes }) => {
     useEffect(() => {
         window.addEventListener('keydown', handleKeyPress);
         return () => {
-            window.removeEventListener('keydown', handleKeyPress);
+            window.removeEventListener('keydown', handleKeyPress)
         };
     }, []);
     
@@ -93,8 +82,8 @@ const PracticePage: React.FC<Props> = ({ practiceNotes }) => {
 
     return (
         <div id="practice">
-            <div id="currentNote">Play this note: {randomNotes[currentNoteIndex][0]} of the {(randomNotes[currentNoteIndex].length) >= 2 ? randomNotes[currentNoteIndex][1] : "minor"} octave</div>
-            <div id="feedback"></div>
+            <div id="currentNote">{setCurrentNoteElement()}</div>
+            <div id="feedback">{feedbackMessage}</div>
             <Piano notes={notes} clickHandler={handleClick}/>
         </div>
     )
