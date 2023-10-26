@@ -2,13 +2,24 @@ import './lessonPage.css';
 import { useParams } from 'react-router-dom';
 import { lessonPages } from '../../data/lessonPages';
 import { Footer } from '../../components/footer/footer';
-import { useState } from 'react';
-import Piano from '../../components/piano/piano';
-import { notes } from '../../data/notes';
+import { useState, useEffect } from 'react';
+import PracticePage from '../practicePage/practicePage';
 
 export function LessonPage() {
     const { id } = useParams<{ id?: string }>();
     const [practiceMode, setPracticeMode] = useState(false);
+
+    useEffect(() => {
+        const storedPracticeMode = localStorage.getItem('practiceMode');
+        if (storedPracticeMode) {
+            setPracticeMode(storedPracticeMode === 'true');
+        }
+    }, []);
+
+    const handlePracticeModeToggle = (newPracticeMode: boolean) => {
+        setPracticeMode(newPracticeMode);
+        localStorage.setItem('practiceMode', newPracticeMode.toString());
+    };
 
     if (!id) {
         return <div className='notFound'>Урок не найден</div>
@@ -19,15 +30,10 @@ export function LessonPage() {
         return <div className='notFound'>Урок не найден :(</div>;
     }
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const audio = new Audio(`/audio/${e.currentTarget.value}.mp3`)
-        audio.play();
-      }
-
     return (
         <>
         {practiceMode ? (
-            <Piano notes={notes} clickHandler={handleClick}/>
+            <PracticePage practiceNotes={lesson.notes} id={lesson.id}/>
         ) : (
             <>
             <div id="lessonPage">
@@ -55,7 +61,7 @@ export function LessonPage() {
                 </div>
                 <img src={lesson.img3} alt="3" className='main_img'/>
             </div>
-            <button className='main-button' onClick={() => {setPracticeMode(true)}}>Practice!</button>
+            <button className='main-button' onClick={() => handlePracticeModeToggle(true)}>Practice!</button>
         </div>
         <Footer />
         </>

@@ -37,7 +37,7 @@ export const lessonPages: Lesson[] = [
         img1: '../images/Lesson11.jpg',
         img2: '../images/Lesson12.jpg',
         img3: '../images/Lesson13.jpg',
-        notes: ['A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2']
+        notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2']
     },
     {
         id: 2,
@@ -60,7 +60,7 @@ export const lessonPages: Lesson[] = [
         img1: '../images/Lesson21.jpg',
         img2: '../images/Lesson22.jpg',
         img3: '../images/Lesson23.jpg',
-        notes: []
+        notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2']
     },
     {
         id: 3,
@@ -83,7 +83,7 @@ export const lessonPages: Lesson[] = [
         img1: '../images/Lesson31.jpg',
         img2: '../images/Lesson32.jpg',
         img3: '../images/Lesson33.jpg',
-        notes: []
+        notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2']
     },
     {
         id: 4,
@@ -107,7 +107,7 @@ export const lessonPages: Lesson[] = [
         img1: '../images/Lesson41.jpg',
         img2: '../images/Lesson42.jpg',
         img3: '../images/Lesson43.jpg',
-        notes: []
+        notes: ['CShapr', 'DSharp', 'FSharp', 'GSharp', 'ASharp', 'CShapr1', 'DSharp1', 'FSharp1', 'GSharp1', 'ASharp1', 'CShapr2', 'DSharp2', 'FSharp2', 'GSharp2', 'ASharp2']
     },
     {
         id: 5,
@@ -131,6 +131,6 @@ export const lessonPages: Lesson[] = [
         img1: '../images/Lesson41.jpg',
         img2: '../images/Lesson52.jpg',
         img3: '../images/Lesson53.jpg',
-        notes: ['A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2']
+        notes: []
     }
 ]

@@ -69,132 +69,132 @@ export const notes: NoteType[] = [
         key: 'U'
     },
     {
-        note: 'C2',
+        note: 'C1',
         color: 'white',
         key: 'I'
     },
     {
-        note: 'CSharp2',
+        note: 'CSharp1',
         color: 'black',
         key: '9'
     },
     {
-        note: 'D2',
+        note: 'D1',
         color: 'white',
         key: 'O'
     },
     {
-        note: 'DSharp2',
+        note: 'DSharp1',
         color: 'black',
         key: '0'
     },
     {
-        note: 'E2',
+        note: 'E1',
         color: 'white',
         key: 'P'
     },
     {
-        note: 'F2',
+        note: 'F1',
         color: 'white',
         key: '['
     },
     {
-        note: 'FSharp2',
+        note: 'FSharp1',
         color: 'black',
         key: '='
     },
     {
-        note: 'G2',
+        note: 'G1',
         color: 'white',
         key: ']'
     },
     {
-        note: 'GSharp2',
+        note: 'GSharp1',
         color: 'black',
         key: 'A'
     },
     {
-        note: 'A2',
+        note: 'A1',
         color: 'white',
         key: 'Z'
     },
     {
-        note: 'ASharp2',
+        note: 'ASharp1',
         color: 'black',
         key: 'S'
     },
     {
-        note: 'B2',
+        note: 'B1',
         color: 'white',
         key: 'X'
     },
     {
-        note: 'C3',
+        note: 'C2',
         color: 'white',
         key: 'C'
     },
     {
-        note: 'CSharp3',
+        note: 'CSharp2',
         color: 'black',
         key: 'F'
     },
     {
-        note: 'D3',
+        note: 'D2',
         color: 'white',
         key: 'V'
     },
     {
-        note: 'DSharp3',
+        note: 'DSharp2',
         color: 'black',
         key: 'G'
     },
     {
-        note: 'E3',
+        note: 'E2',
         color: 'white',
         key: 'B'
     },
     {
-        note: 'F3',
+        note: 'F2',
         color: 'white',
         key: 'N'
     },
     {
-        note: 'FSharp3',
+        note: 'FSharp2',
         color: 'black',
         key: 'J'
     },
     {
-        note: 'G3',
+        note: 'G2',
         color: 'white',
         key: 'M'
     },
     {
-        note: 'GSharp3',
+        note: 'GSharp2',
         color: 'black',
         key: 'K'
     },
     {
-        note: 'A3',
+        note: 'A2',
         color: 'white',
         key: ','
     },
     {
-        note: 'ASharp3',
+        note: 'ASharp2',
         color: 'black',
         key: 'L'
     },
     {
-        note: 'B3',
+        note: 'B2',
         color: 'white',
         key: '.'
     },
     {
-        note: 'C4',
+        note: 'C3',
         color: 'white',
         key: '/'
     },
     {
-        note: 'CSharp4',
+        note: 'CSharp3',
         color: 'black',
         key: ';'
     }

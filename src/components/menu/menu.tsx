@@ -8,7 +8,7 @@ export function Menu() {
             <div id="left">
                 <Link to="/"><img src="/images/logo.png" alt='logo'></img></Link>
                 <Link to="/piano"><button>Piano</button></Link>
-                <Link to="/lessons"><button>Lessons</button></Link>
+                <Link to="/lessons" onClick={() => {localStorage.setItem('practiceMode', "false")}}><button>Lessons</button></Link>
             </div>
             <Link to="/auth"><button>Sign Up</button></Link>
         </div>
