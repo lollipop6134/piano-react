@@ -6,10 +6,12 @@ export interface Lesson {
     text2: string;
     text3: string;
     text4: string;
+    text5: string;
     img1: string;
     img2: string;
     img3: string;
     notes: string[];
+    practiceImage: string;
 }
 
 export const lessonPages: Lesson[] = [
@@ -34,10 +36,14 @@ export const lessonPages: Lesson[] = [
         because why not start with the first letter in the alphabet, A? The thing is that the world
         community of musicians has determined that A is the most perceived note by human hearing, so
         they decided to start naming notes with it.`,
+        text5: `The octave located in the center is called 1 octave. All octaves to the right are numbered further
+        (for example, 2 octave). The octave to the left of the 1 is called the minor octave, and the octave to the left
+        of the minor is the major octave. On this site you can play in minor, 1 and 2 octaves.`,
         img1: '../images/Lesson11.jpg',
         img2: '../images/Lesson12.jpg',
         img3: '../images/Lesson13.jpg',
-        notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2']
+        notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2'],
+        practiceImage: '../images/Lesson13.jpg',
     },
     {
         id: 2,
@@ -57,10 +63,12 @@ export const lessonPages: Lesson[] = [
         text4: `Knowing this, we can easily determine the location on the staff of other sounds in the treble clef! Let's go
         down to the note of C and go up to the note of B. Sometimes not all notes fit into the sheet music, so additional
         lines appear (as in the case of the note C). Sounds easy, right?`,
+        text5: ``,
         img1: '../images/Lesson21.jpg',
         img2: '../images/Lesson22.jpg',
         img3: '../images/Lesson23.jpg',
-        notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2']
+        notes: ['A', 'B', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2'],
+        practiceImage: '',
     },
     {
         id: 3,
@@ -80,10 +88,12 @@ export const lessonPages: Lesson[] = [
         the notes of the bass clef than the violin clef, but there is a life hack (although it does not help everyone, sometimes it is
         easier to just learn). If you know how notes are written in the treble clef, then to read the notes of the bass clef, you
         can raise the readable notes by 2.`,
+        text5: ``,
         img1: '../images/Lesson31.jpg',
         img2: '../images/Lesson32.jpg',
         img3: '../images/Lesson33.jpg',
-        notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2']
+        notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'C1', 'D1', 'E1'],
+        practiceImage: '',
     },
     {
         id: 4,
@@ -104,10 +114,12 @@ export const lessonPages: Lesson[] = [
         text4: `If the alter sign stands before the note in a certain measure, then it will act only until the end of this
         measure. If the signs of alterations are at the beginning of the work next to the clef, then they act from the beginning
         to the end. Alterations play an important role in musical notation, allowing us to create a variety of musical sounds.`,
+        text5: ``,
         img1: '../images/Lesson41.jpg',
         img2: '../images/Lesson42.jpg',
         img3: '../images/Lesson43.jpg',
-        notes: ['CShapr', 'DSharp', 'FSharp', 'GSharp', 'ASharp', 'CShapr1', 'DSharp1', 'FSharp1', 'GSharp1', 'ASharp1', 'CShapr2', 'DSharp2', 'FSharp2', 'GSharp2', 'ASharp2']
+        notes: ['CShapr', 'DSharp', 'FSharp', 'GSharp', 'ASharp', 'CShapr1', 'DSharp1', 'FSharp1', 'GSharp1', 'ASharp1', 'CShapr2', 'DSharp2', 'FSharp2', 'GSharp2', 'ASharp2'],
+        practiceImage: '',
     },
     {
         id: 5,
@@ -128,9 +140,11 @@ export const lessonPages: Lesson[] = [
         text4: `The curl of the bass clef is located on the 4th line of the notation, corresponding to the F note of the minor
         octave. On the first lower extension line of the bass clef is the note E of the large octave, and on the first upper extension
         line is the note C of the first octave.`,
+        text5: ``,
         img1: '../images/Lesson41.jpg',
         img2: '../images/Lesson52.jpg',
         img3: '../images/Lesson53.jpg',
-        notes: []
+        notes: [],
+        practiceImage: '',
     }
 ]

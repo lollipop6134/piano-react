@@ -1,12 +1,37 @@
 #practice {
     font-weight: bold;
-    font-size: 2vw;
+    font-size: 1.8vw;
     color: #8A3100;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 3vw;
+}
+
+#completeImage {
+    border-radius: 5px;
+    border: 1vmin solid #8A3100;
+    width: 37vw;
+    margin-bottom: 1.5vw;
+    margin-top: -1vw;
+}
+
+#practice button {
+    margin-top: 1.5vw;
+}
+
+#practiceImage {
+    width: 20vw;
+    border-radius: 5px;
+    border: 0.7vmin solid #8A3100;
+    margin-top: -1vw;
+    margin-bottom: 1vw;
+}
+
+#practiceInfo {
+    align-items: center;
+    text-align: center;
 }
 
 @media screen and (orientation: portrait) {

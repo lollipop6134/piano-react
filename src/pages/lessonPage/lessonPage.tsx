@@ -33,7 +33,7 @@ export function LessonPage() {
     return (
         <>
         {practiceMode ? (
-            <PracticePage practiceNotes={lesson.notes} id={lesson.id}/>
+            <PracticePage practiceNotes={lesson.notes} id={lesson.id} practiceImage={lesson.practiceImage} />
         ) : (
             <>
             <div id="lessonPage">
@@ -60,6 +60,9 @@ export function LessonPage() {
                     {lesson.text4}
                 </div>
                 <img src={lesson.img3} alt="3" className='main_img'/>
+            </div>
+            <div className='lessonSection'>
+                {lesson.text5}
             </div>
             <button className='main-button' onClick={() => handlePracticeModeToggle(true)}>Practice!</button>
         </div>

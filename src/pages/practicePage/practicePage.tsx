@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { keyboard } from "../../data/notes";
 import { Howl } from "howler";
 import './practicePage.css';
+import { Link } from "react-router-dom";
 
 const sounds: { [key: string]: Howl } = {};
 
@@ -18,28 +19,37 @@ notes.forEach((note) => {
 type Props = {
     id: number;
     practiceNotes: string[];
+    practiceImage: string;
   }
 
-const PracticePage: React.FC<Props> = ({ practiceNotes }) => {
+const PracticePage: React.FC<Props> = ({ practiceNotes, practiceImage }) => {
     const [currentNoteIndex, setCurrentNoteIndex] = useState(0);
     const [feedbackMessage, setFeedbackMessage] = useState("");
+    const [isLessonComplete, setIsLessonComplete] = useState(false);
     const randomNotes = useState(() => practiceNotes.sort(() => Math.random() - 0.5))[0];
 
     const badWords = ['No.', 'Try again!', 'Eww...', 'Bruh.'];
     const goodWords = ["Cool!", "You're so smart!", 'Good!', "Incredible!"];
 
     function setCurrentNoteElement(): string {
-        if (currentNoteIndex < 15) {
+        if (currentNoteIndex < 10) {
             return "Play this note: " + (randomNotes[currentNoteIndex])[0] + " of the " + ((randomNotes[currentNoteIndex].length) >= 2 ? randomNotes[currentNoteIndex][1] : "minor") + " octave";
         } else {
             return "Lesson complete!";
         }
     }
 
+    useEffect(() => {
+        if (currentNoteIndex === 10) {
+          setIsLessonComplete(true);
+        }
+      }, [currentNoteIndex]);
+
     function checkNote(note: string) {
         const currentNote = randomNotes[currentNoteIndex];
+        console.log("chekNote: " + currentNote + ", " + note)
         if (note === currentNote) {
-            setCurrentNoteIndex(currentNoteIndex + 1);
+            setCurrentNoteIndex(prevIndex => prevIndex + 1);
             setFeedbackMessage(goodWords[Math.floor(Math.random() * goodWords.length)]);
         } else {
             setFeedbackMessage(badWords[Math.floor(Math.random() * badWords.length)]);
@@ -70,9 +80,9 @@ const PracticePage: React.FC<Props> = ({ practiceNotes }) => {
     useEffect(() => {
         window.addEventListener('keydown', handleKeyPress);
         return () => {
-            window.removeEventListener('keydown', handleKeyPress)
+          window.removeEventListener('keydown', handleKeyPress);
         };
-    }, []);
+      }, [currentNoteIndex]);
     
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         const audio = new Audio(`/audio/${e.currentTarget.value}.mp3`);
@@ -82,9 +92,16 @@ const PracticePage: React.FC<Props> = ({ practiceNotes }) => {
 
     return (
         <div id="practice">
-            <div id="currentNote">{setCurrentNoteElement()}</div>
-            <div id="feedback">{feedbackMessage}</div>
-            <Piano notes={notes} clickHandler={handleClick}/>
+            {isLessonComplete && <img src="/images/Capy16.jpg" id="completeImage" alt="Cute Capy"/>}
+            <div className="container column" id="practiceInfo">
+                {!isLessonComplete && <img src={practiceImage} id="practiceImage" alt="practice image"></img>}
+                <div>
+                    <div id="currentNote">{setCurrentNoteElement()}</div>
+                    <div id="feedback">{feedbackMessage}</div>
+                </div>
+            </div>
+            {isLessonComplete && <Link to="/lessons" className="main-button">Lessons</Link>}
+            {!isLessonComplete && <Piano notes={notes} clickHandler={handleClick}/>}
         </div>
     )
 }
