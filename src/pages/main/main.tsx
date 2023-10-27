@@ -1,5 +1,6 @@
 import { Footer } from '../../components/footer/footer';
 import './main.css';
+import { Link } from 'react-router-dom';
 
 export function Main() {
     return (
@@ -14,7 +15,7 @@ export function Main() {
                         <div className="description">
                             Discover the joy of playing piano with our interactive lessons. Unlock your musical potential with PianoCapy!
                         </div>
-                        <button className='main-button'>Try Now!</button>
+                        <Link to={"/lessons"}><button className='main-button'>Try Now!</button></Link>
                     </div>
                     <img src="images/Main1.jpg" alt="Capy plays the piano" className="main_img"/>
                 </div>

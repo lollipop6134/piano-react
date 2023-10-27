@@ -22,7 +22,7 @@ type Props = {
     practiceImage: string;
   }
 
-const PracticePage: React.FC<Props> = ({ practiceNotes, practiceImage }) => {
+const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => {
     const [currentNoteIndex, setCurrentNoteIndex] = useState(0);
     const [feedbackMessage, setFeedbackMessage] = useState("");
     const [isLessonComplete, setIsLessonComplete] = useState(false);
@@ -47,7 +47,6 @@ const PracticePage: React.FC<Props> = ({ practiceNotes, practiceImage }) => {
 
     function checkNote(note: string) {
         const currentNote = randomNotes[currentNoteIndex];
-        console.log("chekNote: " + currentNote + ", " + note)
         if (note === currentNote) {
             setCurrentNoteIndex(prevIndex => prevIndex + 1);
             setFeedbackMessage(goodWords[Math.floor(Math.random() * goodWords.length)]);
@@ -89,14 +88,17 @@ const PracticePage: React.FC<Props> = ({ practiceNotes, practiceImage }) => {
         audio.play();
         checkNote(e.currentTarget.value);
     }
-
     return (
         <div id="practice">
             {isLessonComplete && <img src="/images/Capy16.jpg" id="completeImage" alt="Cute Capy"/>}
             <div className="container column" id="practiceInfo">
                 {!isLessonComplete && <img src={practiceImage} id="practiceImage" alt="practice image"></img>}
                 <div>
-                    <div id="currentNote">{setCurrentNoteElement()}</div>
+                    {id === 1 && <div id="currentNote">{setCurrentNoteElement()}</div>}
+                    {id !== 1 && <div className="container row" id="practiceInfoImage">
+                        {isLessonComplete ? "Lesson complete!" : "Play this note: "}
+                        {!isLessonComplete && <img alt="current note" src={`/images/${randomNotes[currentNoteIndex]}.jpg`} id="currentNoteImage" />}
+                        </div>}
                     <div id="feedback">{feedbackMessage}</div>
                 </div>
             </div>
@@ -106,4 +108,4 @@ const PracticePage: React.FC<Props> = ({ practiceNotes, practiceImage }) => {
     )
 }
 
-export default PracticePage
+export default PracticePage;

@@ -22,10 +22,10 @@
 }
 
 #practiceImage {
-    width: 20vw;
+    height: 11vw;
     border-radius: 5px;
     border: 0.7vmin solid #8A3100;
-    margin-top: -1vw;
+    margin-top: -1.5vw;
     margin-bottom: 1vw;
 }
 
@@ -34,8 +34,27 @@
     text-align: center;
 }
 
+#practiceInfoImage {
+    align-items: center;
+    width: 30vw;
+    justify-content: space-evenly;
+}
+
+#currentNoteImage {
+    height: 5.5vw;
+    margin-bottom: 0.7vw;
+}
+
 @media screen and (orientation: portrait) {
     #currentNote {
+        display: none;
+    }
+
+    #practiceImage {
+        display: none;
+    }
+
+    #practiceInfoImage {
         display: none;
     }
 }
