@@ -140,11 +140,30 @@ export const lessonPages: Lesson[] = [
         text4: `The curl of the bass clef is located on the 4th line of the notation, corresponding to the F note of the minor
         octave. On the first lower extension line of the bass clef is the note E of the large octave, and on the first upper extension
         line is the note C of the first octave.`,
-        text5: ``,
+        text5: `By the way, almost all works (with the exception of the simplest ones) are played with two hands, and often the right
+        and left hands play in different clefs (but not always!). In the picture above you can see how the notes for both hands are recorded.
+        The alterations in both hands are the same.`,
         img1: '../images/Lesson41.jpg',
         img2: '../images/Lesson52.jpg',
         img3: '../images/Lesson53.jpg',
-        notes: [],
+        notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2',
+        'CSharp', 'DSharp', 'FSharp', 'GSharp', 'ASharp', 'CSharp1', 'DSharp1', 'FSharp1', 'GSharp1', 'ASharp1', 'CSharp2', 'DSharp2', 'FSharp2', 'GSharp2', 'ASharp2', 'CSharp3'],
+        practiceImage: '../images/Lesson41.jpg',
+    },
+    {
+        id: 6,
+        subtitle: 'Note Duration',
+        title: 'Duration Of Notes',
+        text1: ``,
+        text2: ``,
+        text3: ``,
+        text4: ``,
+        text5: ``,
+        img1: '',
+        img2: '',
+        img3: '',
+        notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2',
+        'CSharp', 'DSharp', 'FSharp', 'GSharp', 'ASharp', 'CSharp1', 'DSharp1', 'FSharp1', 'GSharp1', 'ASharp1', 'CSharp2', 'DSharp2', 'FSharp2', 'GSharp2', 'ASharp2', 'CSharp3'],
         practiceImage: '',
-    }
+    },
 ]

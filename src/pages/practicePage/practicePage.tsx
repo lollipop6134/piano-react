@@ -30,6 +30,8 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
 
     const badWords = ['No.', 'Try again!', 'Eww...', 'Bruh.'];
     const goodWords = ["Cool!", "You're so smart!", 'Good!', "Incredible!"];
+    const completeImages = ['Capy1', 'Capy4', 'Capy8', 'Capy9', 'Capy14', 'Capy15', 'Capy16'];
+    const completeImage = completeImages[Math.floor(Math.random() * completeImages.length)];
 
     function setCurrentNoteElement(): string {
         if (currentNoteIndex < 10) {
@@ -90,10 +92,9 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
     }
     return (
         <div id="practice">
-            {isLessonComplete && <img src="/images/Capy16.jpg" id="completeImage" alt="Cute Capy"/>}
-            <div className="container column" id="practiceInfo">
-                {!isLessonComplete && <img src={practiceImage} id="practiceImage" alt="practice image"></img>}
-                <div>
+            {isLessonComplete && <img src={`/images/${completeImage}.jpg`} id="completeImage" alt="Cute Capy"/>}
+            <div className="container row" id="practiceInfo">
+            <div>
                     {id === 1 && <div id="currentNote">{setCurrentNoteElement()}</div>}
                     {id !== 1 && <div className="container row" id="practiceInfoImage">
                         {isLessonComplete ? "Lesson complete!" : "Play this note: "}
@@ -101,6 +102,7 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
                         </div>}
                     <div id="feedback">{feedbackMessage}</div>
                 </div>
+                {!isLessonComplete && <img src={practiceImage} id="practiceImage" alt={`practice for ${id} lesson`}></img>}
             </div>
             {isLessonComplete && <Link to="/lessons" className="main-button">Lessons</Link>}
             {!isLessonComplete && <Piano notes={notes} clickHandler={handleClick}/>}

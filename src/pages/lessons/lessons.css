@@ -23,10 +23,21 @@
     color: #5F2300;
     cursor: pointer;
     transition: 0.5s;
+    flex-direction: column;
 }
 
 .lesson:hover {
     transform: translateY(-0.5vw);
+}
+
+#complete {
+    margin-top: 0.5vw;
+    margin-bottom: -1.8vw;
+    width: calc(100% + 3.5vw);
+    color: white;
+    background-color: #58C189;
+    border-radius: 5px;
+    border: 0.5vmin solid #5F2300;
 }
 
 @media screen and (orientation: portrait) {

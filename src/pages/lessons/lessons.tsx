@@ -9,7 +9,9 @@ export function Lessons() {
         <>
             <div className='lessons'>
                 {lessonPages.map((lesson) => (
-                    <Link to={`/lesson/${lesson.id}`} className='lesson' key={lesson.id}>Lesson {lesson.id}<br />{lesson.subtitle}</Link>
+                    <Link to={`/lesson/${lesson.id}`} className='lesson' key={lesson.id}>Lesson {lesson.id}<br />{lesson.subtitle}
+                    {/* { ??? && <div id="complete">Complete!</div> } */}
+                    </Link>
                 ))}
             </div>
             <Footer />

@@ -36,6 +36,12 @@
     font-size: 4vw;
     color: #5F2300;
     align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.notFound img {
+    width: 20vw;
 }
 
 @media screen and (orientation: portrait) {
@@ -60,5 +66,13 @@
     #lessonPage .main_img {
         margin: 7vw 0vw;
         width: 85%;;
+    }
+
+    .notFound {
+        font-size: 9vw;
+    }
+
+    .notFound img {
+        width: 50vw;
     }
 }

@@ -22,12 +22,22 @@ export function LessonPage() {
     };
 
     if (!id) {
-        return <div className='notFound'>Урок не найден</div>
+        return (
+            <div className='notFound'>
+                <img src="/images/notFound.png" alt="Sad capybara" />
+                <div>Lesson not found :(</div>
+            </div>
+        )
     }
     const lesson = lessonPages.find((l) => l.id === parseInt(id, 10));
 
     if (!lesson) {
-        return <div className='notFound'>Урок не найден :(</div>;
+        return (
+            <div className='notFound'>
+                <img src="/images/notFound.png" alt="Sad capybara" />
+                <div>Lesson not found :(</div>
+            </div>
+        )
     }
 
     return (
