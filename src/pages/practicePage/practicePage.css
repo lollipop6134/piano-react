@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 4vw;
+    margin-top: 3vw;
 }
 
 #completeImage {
@@ -14,7 +14,6 @@
     border: 1vmin solid #8A3100;
     height: 23vw;
     margin-bottom: 1.5vw;
-    margin-top: -1vw;
 }
 
 #practice button {
@@ -25,7 +24,7 @@
     height: 13vw;
     border-radius: 5px;
     border: 0.7vmin solid #8A3100;
-    margin-top: -1.5vw;
+    margin-top: -0.5vw;
     margin-bottom: 1vw;
 }
 

@@ -34,7 +34,7 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
     const completeImage = completeImages[Math.floor(Math.random() * completeImages.length)];
 
     function setCurrentNoteElement(): string {
-        if (currentNoteIndex < 10) {
+        if (currentNoteIndex < 5) {
             return "Play this note: " + (randomNotes[currentNoteIndex])[0] + " of the " + ((randomNotes[currentNoteIndex].length) >= 2 ? randomNotes[currentNoteIndex][1] : "minor") + " octave";
         } else {
             return "Lesson complete!";
@@ -42,7 +42,7 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
     }
 
     useEffect(() => {
-        if (currentNoteIndex === 10) {
+        if (currentNoteIndex === 5) {
           setIsLessonComplete(true);
         }
       }, [currentNoteIndex]);

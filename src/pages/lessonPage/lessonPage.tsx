@@ -4,6 +4,7 @@ import { lessonPages } from '../../data/lessonPages';
 import { Footer } from '../../components/footer/footer';
 import { useState, useEffect } from 'react';
 import PracticePage from '../practicePage/practicePage';
+import Test from '../test/test';
 
 export function LessonPage() {
     const { id } = useParams<{ id?: string }>();
@@ -42,8 +43,8 @@ export function LessonPage() {
 
     return (
         <>
-        {practiceMode ? (
-            <PracticePage practiceNotes={lesson.notes} id={lesson.id} practiceImage={lesson.practiceImage} />
+        {practiceMode ? ( lesson.id !== 6 ?
+            <PracticePage practiceNotes={lesson.notes} id={lesson.id} practiceImage={lesson.practiceImage} /> : <Test id={lesson.id} />
         ) : (
             <>
             <div id="lessonPage">
