@@ -3,24 +3,24 @@
       "question": "Какая столица Франции?",
       "answers": ["Париж", "Москва", "Берлин", "Лондон"],
       "correctAnswer": "Париж",
-      "image": "lesson11"
+      "image": "Lesson11"
     },
     {
       "question": "Сколько планет в Солнечной системе?",
       "answers": ["7", "8", "9", "10"],
       "correctAnswer": "8",
-      "image": "lesson12"
+      "image": "Lesson12"
     },
     {
         "question": "Какая столица Франции?",
         "answers": ["Париж", "Москва", "Берлин", "Лондон"],
         "correctAnswer": "Париж",
-        "image": "lesson13"
+        "image": "Lesson13"
       },
       {
         "question": "Сколько планет в Солнечной системе?",
         "answers": ["7", "8", "9", "10"],
         "correctAnswer": "8",
-        "image": "lesson21"
+        "image": "Lesson21"
       }
   ]
