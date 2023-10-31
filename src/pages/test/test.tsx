@@ -36,7 +36,7 @@ const Test: React.FC<Props> = ({ id }) => {
       {!testCompleted ? (
         <div>
           <div id="question">{questions[questionIndex].question}</div>
-          <img src={`/images/${questions[questionIndex].image}.jpg`} alt="question" id="testImage" />
+          <img src={`../images/${questions[questionIndex].image}.jpg`} alt="question" id="testImage" />
           <div id="answers">
           {questions[questionIndex].answers.map((answer, index) => (
             <button id="answer" key={index} onClick={() => handleAnswer(answer)}>
