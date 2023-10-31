@@ -1,12 +1,12 @@
 #practice {
     font-weight: bold;
-    font-size: 1.8vw;
+    font-size: 1.7vw;
     color: #8A3100;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 4.5vw;
+    margin-top: 4vw;
 }
 
 #completeImage {
@@ -22,9 +22,9 @@
 }
 
 #practiceImage {
-    height: 14.5vw;
+    height: 13vw;
     border-radius: 5px;
-    border: 0.8vmin solid #8A3100;
+    border: 0.7vmin solid #8A3100;
     margin-top: -1.5vw;
     margin-bottom: 1vw;
 }
@@ -43,7 +43,7 @@
 }
 
 #currentNoteImage {
-    height: 7vw;
+    height: 6vw;
     margin-bottom: 0.7vw;
 }
 
