@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import data from "../../data/questions.json";
 import "./test.css"
 import { Link } from "react-router-dom";
@@ -9,10 +9,10 @@ type Props = {
 
 const Test: React.FC<Props> = ({ id }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [questions, setQuestions] = useState(data);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [score, setScore] = useState(0);
   const [testCompleted, setTestCompleted] = useState(false);
+  const questions = data;
 
   const completeImages = ['Capy1', 'Capy4', 'Capy8', 'Capy9', 'Capy14', 'Capy15', 'Capy16'];
   const completeImage = completeImages[Math.floor(Math.random() * completeImages.length)];
@@ -27,7 +27,7 @@ const Test: React.FC<Props> = ({ id }) => {
     if (questionIndex < questions.length - 1) {
       setQuestionIndex(questionIndex + 1);
     } else {
-      setTestCompleted(true); // Устанавливаем флаг завершения теста
+      setTestCompleted(true);
     }
   };
 

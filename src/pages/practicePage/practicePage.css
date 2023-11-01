@@ -58,4 +58,8 @@
     #practiceInfoImage {
         display: none;
     }
+
+    #feedback {
+        display: none;
+    }
 }

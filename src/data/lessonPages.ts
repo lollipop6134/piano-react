@@ -162,8 +162,7 @@ export const lessonPages: Lesson[] = [
         img1: '',
         img2: '',
         img3: '',
-        notes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2', 'G2',
-        'CSharp', 'DSharp', 'FSharp', 'GSharp', 'ASharp', 'CSharp1', 'DSharp1', 'FSharp1', 'GSharp1', 'ASharp1', 'CSharp2', 'DSharp2', 'FSharp2', 'GSharp2', 'ASharp2', 'CSharp3'],
-        practiceImage: '',
+        notes: ['C2', 'A1', 'E1', 'D1', 'C2', 'D2', 'A1', 'E1', 'D1'],
+        practiceImage: '../images/Lesson6PracticeCapy.jpg',
     },
 ]

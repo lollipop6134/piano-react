@@ -1,8 +1,6 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Piano from "../../components/piano/piano"
-import { notes } from "../../data/notes"
-import { useEffect } from "react";
-import { keyboard } from "../../data/notes";
+import { notes, keyboard } from "../../data/notes"
 import { Howl } from "howler";
 
 const sounds: { [key: string]: Howl } = {};

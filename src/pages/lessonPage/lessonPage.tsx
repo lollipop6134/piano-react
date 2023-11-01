@@ -43,7 +43,7 @@ export function LessonPage() {
 
     return (
         <>
-        {practiceMode ? ( lesson.id !== 6 ?
+        {practiceMode ? ( lesson.id !== 9 ?
             <PracticePage practiceNotes={lesson.notes} id={lesson.id} practiceImage={lesson.practiceImage} /> : <Test id={lesson.id} />
         ) : (
             <>

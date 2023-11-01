@@ -1,8 +1,6 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Piano from "../../components/piano/piano"
-import { notes } from "../../data/notes"
-import { useEffect, useState } from "react";
-import { keyboard } from "../../data/notes";
+import { notes, keyboard } from "../../data/notes"
 import { Howl } from "howler";
 import './practicePage.css';
 import { Link } from "react-router-dom";
@@ -26,36 +24,50 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
     const [currentNoteIndex, setCurrentNoteIndex] = useState(0);
     const [feedbackMessage, setFeedbackMessage] = useState("");
     const [isLessonComplete, setIsLessonComplete] = useState(false);
-    const randomNotes = useState(() => practiceNotes.sort(() => Math.random() - 0.5))[0];
+    const [firstRoundComplete, setFirstRoundComplete] = useState(false);
+    const lessonNotes = useState(id < 6 ? (() => practiceNotes.sort(() => Math.random() - 0.5)) : practiceNotes)[0];
 
     const badWords = ['No.', 'Try again!', 'Eww...', 'Bruh.'];
     const goodWords = ["Cool!", "You're so smart!", 'Good!', "Incredible!"];
     const completeImages = ['Capy1', 'Capy4', 'Capy8', 'Capy9', 'Capy14', 'Capy15', 'Capy16'];
     const completeImage = completeImages[Math.floor(Math.random() * completeImages.length)];
 
+    let totalNotes: number;
+    if (id < 6) totalNotes = 10;
+    else totalNotes = practiceNotes.length;
+
     function setCurrentNoteElement(): string {
-        if (currentNoteIndex < 5) {
-            return "Play this note: " + (randomNotes[currentNoteIndex])[0] + " of the " + ((randomNotes[currentNoteIndex].length) >= 2 ? randomNotes[currentNoteIndex][1] : "minor") + " octave";
+        if (currentNoteIndex < totalNotes) {
+            return "Play this note: " + (lessonNotes[currentNoteIndex])[0] + " of the " + ((lessonNotes[currentNoteIndex].length) >= 2 ? lessonNotes[currentNoteIndex][1] : "minor") + " octave";
         } else {
             return "Lesson complete!";
         }
-    }
+    };
 
     useEffect(() => {
-        if (currentNoteIndex === 5) {
-          setIsLessonComplete(true);
+        if (currentNoteIndex === totalNotes) {
+            if (id < 6) {
+                setIsLessonComplete(true);
+            } else {
+                if (firstRoundComplete) {
+                    setIsLessonComplete(true);
+                  } else {
+                    setFirstRoundComplete(true);
+                    setCurrentNoteIndex(0);
+                  }
+            }
         }
-      }, [currentNoteIndex]);
+      }, [currentNoteIndex, firstRoundComplete, lessonNotes]);
 
     function checkNote(note: string) {
-        const currentNote = randomNotes[currentNoteIndex];
+        const currentNote = lessonNotes[currentNoteIndex];
         if (note === currentNote) {
             setCurrentNoteIndex(prevIndex => prevIndex + 1);
             setFeedbackMessage(goodWords[Math.floor(Math.random() * goodWords.length)]);
         } else {
             setFeedbackMessage(badWords[Math.floor(Math.random() * badWords.length)]);
         }
-    }
+    };
 
     const handleKeyPress = (event: KeyboardEvent) => {
         if (event.repeat) return;
@@ -89,7 +101,17 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
         const audio = new Audio(`/audio/${e.currentTarget.value}.mp3`);
         audio.play();
         checkNote(e.currentTarget.value);
-    }
+    };
+
+    function setImage():string {
+        if (!firstRoundComplete)
+        {
+            return `/images/${lessonNotes[currentNoteIndex]}.jpg`;
+        } else {
+            return `/images/someCapy.jpg`;
+        }
+    };
+
     return (
         <div id="practice">
             {isLessonComplete && <img src={`/images/${completeImage}.jpg`} id="completeImage" alt="Cute Capy"/>}
@@ -97,12 +119,12 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
             <div>
                     {id === 1 && <div id="currentNote">{setCurrentNoteElement()}</div>}
                     {id !== 1 && <div className="container row" id="practiceInfoImage">
-                        {isLessonComplete ? "Lesson complete!" : "Play this note: "}
-                        {!isLessonComplete && <img alt="current note" src={`/images/${randomNotes[currentNoteIndex]}.jpg`} id="currentNoteImage" />}
+                    {isLessonComplete ? "Lesson complete!" : firstRoundComplete ? "Let's try together! " : "Play this note: "}
+                        {!isLessonComplete && <img alt="current note" src={setImage()} id="currentNoteImage" />}
                         </div>}
                     <div id="feedback">{feedbackMessage}</div>
                 </div>
-                {!isLessonComplete && <img src={practiceImage} id="practiceImage" alt={`practice for ${id} lesson`}></img>}
+                {id < 6 && !isLessonComplete && <img src={practiceImage} id="practiceImage" alt={`practice for ${id} lesson`} />}
             </div>
             {isLessonComplete && <Link to="/lessons" className="main-button">Lessons</Link>}
             {!isLessonComplete && <Piano notes={notes} clickHandler={handleClick}/>}
