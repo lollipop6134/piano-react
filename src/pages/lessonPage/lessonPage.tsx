@@ -72,9 +72,9 @@ export function LessonPage() {
                 </div>
                 <img src={lesson.img3} alt="3" className='main_img'/>
             </div>
-            <div className='lessonSection'>
+            {lesson.text5 !== '' && <div className='lessonSection'>
                 {lesson.text5}
-            </div>
+            </div>}
             <button className='main-button' onClick={() => handlePracticeModeToggle(true)}>Practice!</button>
         </div>
         <Footer />

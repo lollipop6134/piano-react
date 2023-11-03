@@ -108,7 +108,7 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
         {
             return `/images/${lessonNotes[currentNoteIndex]}.jpg`;
         } else {
-            return `/images/someCapy.jpg`;
+            return practiceImage;
         }
     };
 
@@ -126,8 +126,8 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
                 </div>
                 {id < 6 && !isLessonComplete && <img src={practiceImage} id="practiceImage" alt={`practice for ${id} lesson`} />}
             </div>
-            {isLessonComplete && <Link to="/lessons" className="main-button">Lessons</Link>}
-            {!isLessonComplete && <Piano notes={notes} clickHandler={handleClick}/>}
+            {isLessonComplete && <Link to="/lessons" className="main-button" onClick={() => {localStorage.setItem('practiceMode', "false")}}>Lessons</Link>}
+            {!isLessonComplete && <Piano notes={notes} clickHandler={handleClick} />}
         </div>
     )
 }

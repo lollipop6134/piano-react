@@ -1,7 +1,7 @@
 #test {
     font-weight: bold;
     color: #5F2300;
-    font-size: 2.5vw;
+    font-size: 2.1vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,13 +41,21 @@
 
 #testImage {
     margin-top: 1vw;
-    height: 20vw;
+    height: 19vw;
     border-radius: 5px;
     border: 0.5vw solid #8C4E2A;
 }
 
 #sadCapy {
     height: 52vh;
+}
+
+#answers button.correct {
+    background-color: #5DB065; /* Зеленый цвет для правильного ответа */
+  }
+  
+#answers button.incorrect {
+    background-color: #FF6347; /* Красный цвет для неправильного ответа */
 }
 
 @media screen and (orientation: portrait) {

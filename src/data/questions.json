@@ -1,26 +1,38 @@
 [
     {
-      "question": "Какая столица Франции?",
-      "answers": ["Париж", "Москва", "Берлин", "Лондон"],
-      "correctAnswer": "Париж",
+      "question": "What note is that?",
+      "answers": ["Whole note", "Half note", "Quarter note", "Eighth note"],
+      "correctAnswer": "Half note",
       "image": "Lesson11"
     },
     {
-      "question": "Сколько планет в Солнечной системе?",
-      "answers": ["7", "8", "9", "10"],
-      "correctAnswer": "8",
+      "question": "What are these notes?",
+      "answers": ["Quarter notes", "Eighth notes", "Sixteenth notes", "Half notes"],
+      "correctAnswer": "Sixteenth notes",
       "image": "Lesson12"
     },
     {
-        "question": "Какая столица Франции?",
-        "answers": ["Париж", "Москва", "Берлин", "Лондон"],
-        "correctAnswer": "Париж",
-        "image": "Lesson13"
-      },
-      {
-        "question": "Сколько планет в Солнечной системе?",
-        "answers": ["7", "8", "9", "10"],
-        "correctAnswer": "8",
-        "image": "Lesson21"
-      }
+      "question": "How many times does the half note sound longer than the sixteenth?",
+      "answers": ["2", "4", "8", "16"],
+      "correctAnswer": "8",
+      "image": "Lesson13"
+    },
+    {
+      "question": "How many ways are there to lengthen notes?",
+      "answers": ["2", "10", "0", "Who knows :)"],
+      "correctAnswer": "2",
+      "image": "Lesson21"
+    },
+    {
+      "question": "What is this rest?",
+      "answers": ["Half rest", "Whole rest", "Quarter rest", "Sixteenth rest"],
+      "correctAnswer": "Half rest",
+      "image": "Lesson21"
+    },
+    {
+      "question": "And what is this rest?",
+      "answers": ["Whole rest", "Eighth rest", "Sixteenth rest", "Quarter rest"],
+      "correctAnswer": "Sixteenth rest",
+      "image": "Lesson21"
+    }
   ]

@@ -12,6 +12,7 @@ const Test: React.FC<Props> = ({ id }) => {
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [score, setScore] = useState(0);
   const [testCompleted, setTestCompleted] = useState(false);
+  const [correctlyAnswered, setCorrectlyAnswered] = useState<boolean | null>(null);
   const questions = data;
 
   const completeImages = ['Capy1', 'Capy4', 'Capy8', 'Capy9', 'Capy14', 'Capy15', 'Capy16'];
@@ -19,15 +20,23 @@ const Test: React.FC<Props> = ({ id }) => {
 
   const handleAnswer = (answer: string) => {
     const correctAnswer = questions[questionIndex].correctAnswer;
-    if (answer === correctAnswer) {
+    const isCorrect = answer === correctAnswer;
+  
+    if (isCorrect) {
       setScore(score + 1);
     }
-
     setUserAnswers([...userAnswers, answer]);
+    setCorrectlyAnswered(isCorrect);
+  
     if (questionIndex < questions.length - 1) {
-      setQuestionIndex(questionIndex + 1);
+      setTimeout(() => {
+        setQuestionIndex(questionIndex + 1);
+        setCorrectlyAnswered(null);
+      }, 1500);
     } else {
-      setTestCompleted(true);
+      setTimeout(() => {
+        setTestCompleted(true);
+      }, 1500);
     }
   };
 
@@ -35,11 +44,15 @@ const Test: React.FC<Props> = ({ id }) => {
     <div id="test">
       {!testCompleted ? (
         <div>
-          <div id="question">{questions[questionIndex].question}</div>
+          <div id="question">{questionIndex+1}. {questions[questionIndex].question}</div>
           <img src={`../images/${questions[questionIndex].image}.jpg`} alt="question" id="testImage" />
           <div id="answers">
           {questions[questionIndex].answers.map((answer, index) => (
-            <button id="answer" key={index} onClick={() => handleAnswer(answer)}>
+            <button
+            key={index}
+            onClick={() => handleAnswer(answer)}
+            className={correctlyAnswered === null ? '' : (answer === questions[questionIndex].correctAnswer ? 'correct' : 'incorrect')}
+            >
               {answer}
             </button>
           ))}
@@ -54,7 +67,7 @@ const Test: React.FC<Props> = ({ id }) => {
             <img src="/images/notFound.png" alt="sad capy" id="sadCapy"/>
             )}
             <div>Your score: {score}/{questions.length}</div>
-            <Link to="/lessons" className="main-button">Lessons</Link>
+            <Link to="/lessons" className="main-button" onClick={() => {localStorage.setItem('practiceMode', "false")}}>Lessons</Link>
         </div>
       )}
     </div>

@@ -123,8 +123,8 @@ export const lessonPages: Lesson[] = [
     },
     {
         id: 5,
-        subtitle: 'Consolidation',
-        title: 'Consolidation',
+        subtitle: 'Consolidation 1',
+        title: 'Consolidation 1',
         text1: `Congratulations, you've come a long way! Having memorized everything that you learned in the previous 4 lessons,
         you will be able to read absolutely all the recorded notes! There will be no new information in this lesson, let's just
         briefly repeat what you already know and practice a little more.`,
@@ -153,16 +153,82 @@ export const lessonPages: Lesson[] = [
     {
         id: 6,
         subtitle: 'Note Duration',
-        title: 'Duration Of Notes',
+        title: 'Duration of Notes',
+        text1: `You're doing great, keep it up! But I think you understand that this is not enough. Now you and I need to figure out the
+        durations of sounds. In practice, we will not study this topic, but will begin to learn your first work! But don't think that everything
+        is so simple, a test awaits you at the end of the topic!`,
+        text2: `The duration of musical sounds is measured by counting uniform time intervals. It is customary to take a quarter note as a unit
+        of reference, which is depicted as a black painted oval with a straight stick (you have already met them in the lessons). For the development
+        of measured and rhythmic playing, counting out loud is often used. Half notes sound twice as long as quarter notes (quite logical, isn't it?).
+        Half notes are represented by an empty oval with a stick. Two half notes (or four quarter notes) form a whole note, which is represented by an
+        empty oval without a stick. This note requires four quarter counts. `,
+        text3: `Often in music there are also shorter sounds that are recorded by the eighth, sixteenth, thirty-second and so on notes. Eighth notes
+        are performed 2 times faster than quarter notes and are pictured as a black oval with a tail added to the stick. Several eighths that are nearby
+        are usually connected by a common horizontal line.`,
+        text4: `The sixteenth notes are played twice as fast as the eighth, and the thirty-second notes are played twice as fast as the sixteenth. They
+        are written with two and three tails, respectively, and can be connected by a horizontal line according to the same rules as the eighth.`,
+        text5: `When passing the practice, always try to take into account the material you have passed! Remember that eighth notes should be played twice
+        as fast as quarter notes!`,
+        img1: '../images/Lesson61.jpg',
+        img2: '../images/Lesson62.jpg',
+        img3: '../images/Lesson63.jpg',
+        notes: ['C1', 'A', 'E', 'D', 'C1', 'D1', 'A', 'E', 'D'],
+        practiceImage: '../images/Lesson6Practice.jpg',
+    },
+    {
+        id: 7,
+        subtitle: 'Lenghtening. Rests',
+        title: 'Lengthening and Rests',
+        text1: `Well, have you figured out what this song is yet? If not, then after this lesson you will definitely understand! Here you will analyze a
+        small part of the last topic and get acquainted with the rests. And don't forget to remember, because a test is waiting for you soon!`,
+        text2: `So, there are two ways to increase the duration of the sound. Here is the first one: if two adjacent notes of the same height are connected
+        by a small arc (tie), then the second sound is not played on the instrument, but only delayed. Of the two sounds, one is formed, the duration of which
+        is equal to the sum of the durations of the first and second sounds.`,
+        text3: `The second method is that the dot to the right of the note lengthens this note by half its duration. That is, a half note with a dot will last
+        as a half + quarter note. And, for example, a whole note with a dot will last as a whole + half. Elementary!`,
+        text4: `A rest is a sign indicating a break in the sound. A rest — a temporary silence in music — is one of the means of expression. The duration of rests
+        is measured in the same way as the duration of sounds (pay attention to the picture). `,
+        text5: `When counting aloud, the pauses should be calculated in the same way as the notes of the corresponding duration. The dots near the pauses have
+        the same meaning as the dots near the notes.`,
+        img1: '../images/Lesson71.jpg',
+        img2: '../images/Lesson72.jpg',
+        img3: '../images/Lesson73.jpg',
+        notes: ['E1', 'E1', 'E1', 'E1', 'E1', 'E1', 'D1', 'D1', 'D1', 'D1', 'D1', 'C1', 'B', 'A', 'D1', 'D1', 'C1', 'C1', 'B', 'A', 'A', 'D1', 'D1', 'C1', 'B', 'A'],
+        practiceImage: '../images/Lesson7Practice.jpg',
+    },
+    {
+        id: 8,
+        subtitle: 'Bars',
+        title: 'Bars',
+        text1: `♫... sippin' on that Henn', I know you love that Bacardi ...♫ oh, are you here already? You're doing great, this is my favorite song! Ahem, okay, never
+        mind. Let's go study what bars are! *A little friendly reminder about the TEST that awaits you already IN THE NEXT LESSON!!!*`,
+        text2: `Musical works are divided into short, equal in the sum of the durations contained in them, segments called bars. In musical notation, the bars are separated
+        from each other by vertically placed clock lines (you saw this in previous practice). In music we meet alternations of strong and weak parts. The stress falls on
+        a strong part of the beat, that is, on its first sound. The bar combines a certain number of strong and weak parts.`,
+        text3: `The time signature is set at the beginning of the musical string after the clef and clef alteration signs and is indicated by a fraction, the numerator of
+        which indicates which counting is in this work, and the denominator — what duration is taken as a unit of counting.`,
+        text4: `So, for example, if the song size is 2/4, it means: firstly, that there are two parts (strong and weak) in the beat here, and secondly, that the unit of counting
+        here is a quarter. Therefore, the counting here should go: one, a, two, a, three, a, four, a.`,
+        text5: ``,
+        img1: '../images/Lesson81.jpg',
+        img2: '../images/Lesson82.jpg',
+        img3: '../images/Lesson83.jpg',
+        notes: [],
+        practiceImage: '../images/Lesson8Practice.jpg',
+    },
+    {
+        id: 9,
+        subtitle: 'Consolidation 2',
+        title: 'Consolidation 2',
         text1: ``,
         text2: ``,
         text3: ``,
         text4: ``,
         text5: ``,
-        img1: '',
-        img2: '',
-        img3: '',
-        notes: ['C2', 'A1', 'E1', 'D1', 'C2', 'D2', 'A1', 'E1', 'D1'],
-        practiceImage: '../images/Lesson6PracticeCapy.jpg',
+        img1: '../images/Lesson91.jpg',
+        img2: '../images/Lesson92.jpg',
+        img3: '../images/Lesson93.jpg',
+        notes: [],
+        practiceImage: '',
     },
 ]
