@@ -3,42 +3,60 @@
       "question": "What note is that?",
       "answers": ["Whole note", "Half note", "Quarter note", "Eighth note"],
       "correctAnswer": "Half note",
-      "image": "Lesson11"
+      "image": "HalfNote"
     },
     {
       "question": "What are these notes?",
       "answers": ["Quarter notes", "Eighth notes", "Sixteenth notes", "Half notes"],
       "correctAnswer": "Sixteenth notes",
-      "image": "Lesson12"
+      "image": "SixteenthNotes"
     },
     {
       "question": "How many times does the half note sound longer than the sixteenth?",
-      "answers": ["2", "4", "8", "16"],
+      "answers": ["2", "8"],
       "correctAnswer": "8",
-      "image": "Lesson13"
+      "image": "SixteenthNote"
     },
     {
       "question": "How many ways are there to lengthen notes?",
       "answers": ["2", "10", "0", "Who knows :)"],
       "correctAnswer": "2",
-      "image": "Lesson21"
+      "image": "CapyTest"
     },
     {
       "question": "What is this rest?",
       "answers": ["Half rest", "Whole rest", "Quarter rest", "Sixteenth rest"],
       "correctAnswer": "Half rest",
-      "image": "Lesson21"
+      "image": "HalfRest"
     },
     {
       "question": "And what is this rest?",
       "answers": ["Whole rest", "Eighth rest", "Sixteenth rest", "Quarter rest"],
       "correctAnswer": "Sixteenth rest",
-      "image": "Lesson21"
+      "image": "SixteenthRest"
     },
     {
       "question": "With what are the bars separated?",
       "answers": ["Alteration signs", "Barlines", "Time signature", "Clefs"],
       "correctAnswer": "Barlines",
-      "image": "Lesson21"
+      "image": "Lesson82"
+    },
+    {
+      "question": "Is it true that time signature is set at the ending of the musical work?",
+      "answers": ["True", "False"],
+      "correctAnswer": "False",
+      "image": "TimeSignature"
+    },
+    {
+      "question": "Is it true that bars are equal in the sum of the durations contained in them?",
+      "answers": ["True", "False"],
+      "correctAnswer": "True",
+      "image": "someCapy"
+    },
+    {
+      "question": "Is it true that you are super mega cool?",
+      "answers": ["Maybe...", "Don't think so", "Of course!", "I don't know"],
+      "correctAnswer": "Of course!",
+      "image": "Lesson71"
     }
   ]
