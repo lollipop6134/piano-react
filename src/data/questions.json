@@ -34,5 +34,11 @@
       "answers": ["Whole rest", "Eighth rest", "Sixteenth rest", "Quarter rest"],
       "correctAnswer": "Sixteenth rest",
       "image": "Lesson21"
+    },
+    {
+      "question": "With what are the bars separated?",
+      "answers": ["Alteration signs", "Barlines", "Time signature", "Clefs"],
+      "correctAnswer": "Barlines",
+      "image": "Lesson21"
     }
   ]

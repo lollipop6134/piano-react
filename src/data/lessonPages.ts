@@ -220,14 +220,19 @@ export const lessonPages: Lesson[] = [
         id: 9,
         subtitle: 'Consolidation 2',
         title: 'Consolidation 2',
-        text1: ``,
-        text2: ``,
-        text3: ``,
-        text4: ``,
+        text1: `Well, this moment has finally come... You have finished studying the second global topic — rhythm and duration! And this means that now you have a TEST waiting for you.
+        But don't worry, I won't let you fail it, so now we'll quickly repeat the main points of the topic. Good luck!`,
+        text2: `A quarter note is taken as a unit of counting, which is indicated by a black oval with a stick. The half note is twice as large as the quarter note and is indicated by
+        an empty oval with a stick. A whole note is twice as large as a half note and is indicated by an empty oval. The eighth note is twice as short as the fourth and is indicated
+        by a black oval with a stick and a tail. The sixteenth notes are played twice as fast as the eighth. You can see how the notes are designated in the picture above.`,
+        text3: `There are two ways to lengthen notes — a dot on the right (1.5 times) and a tie (the sum of two notes). Rests have the same names and durations as notes and can be
+        lengthened by a dot according to the same scheme. You can see the symbols of the rests in the picture.`,
+        text4: `Bars are short intervals of a piece of music of the same duration. They are separated from each other using barlines. The time signature is set indicated by a fraction,
+        the numerator of which indicates which counting is in this work, and the denominator — what duration is taken as a unit of counting.`,
         text5: ``,
-        img1: '../images/Lesson91.jpg',
-        img2: '../images/Lesson92.jpg',
-        img3: '../images/Lesson93.jpg',
+        img1: '../images/Lesson62.jpg',
+        img2: '../images/Lesson73.jpg',
+        img3: '../images/Lesson83.jpg',
         notes: [],
         practiceImage: '',
     },
