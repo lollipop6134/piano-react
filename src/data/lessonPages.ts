@@ -161,7 +161,7 @@ export const lessonPages: Lesson[] = [
         of reference, which is depicted as a black painted oval with a straight stick (you have already met them in the lessons). For the development
         of measured and rhythmic playing, counting out loud is often used. Half notes sound twice as long as quarter notes (quite logical, isn't it?).
         Half notes are represented by an empty oval with a stick. Two half notes (or four quarter notes) form a whole note, which is represented by an
-        empty oval without a stick. This note requires four quarter counts. `,
+        empty oval without a stick. This note requires four quarter counts.`,
         text3: `Often in music there are also shorter sounds that are recorded by the eighth, sixteenth, thirty-second and so on notes. Eighth notes
         are performed 2 times faster than quarter notes and are pictured as a black oval with a tail added to the stick. Several eighths that are nearby
         are usually connected by a common horizontal line.`,
@@ -187,7 +187,7 @@ export const lessonPages: Lesson[] = [
         text3: `The second method is that the dot to the right of the note lengthens this note by half its duration. That is, a half note with a dot will last
         as a half + quarter note. And, for example, a whole note with a dot will last as a whole + half. Elementary!`,
         text4: `A rest is a sign indicating a break in the sound. A rest — a temporary silence in music — is one of the means of expression. The duration of rests
-        is measured in the same way as the duration of sounds (pay attention to the picture). `,
+        is measured in the same way as the duration of sounds (pay attention to the picture).`,
         text5: `When counting aloud, the pauses should be calculated in the same way as the notes of the corresponding duration. The dots near the pauses have
         the same meaning as the dots near the notes.`,
         img1: '../images/Lesson71.jpg',
