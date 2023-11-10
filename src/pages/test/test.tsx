@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import data from "../../data/questions.json";
 import "./test.css"
 import { Link } from "react-router-dom";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient("https://lxbcgtsajrvcgbuyizck.supabase.co",
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx4YmNndHNhanJ2Y2didXlpemNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk1MTkwNTcsImV4cCI6MjAxNTA5NTA1N30.Ey3PDIXgcVqGtU1GAWCPMAKuDgLOC7BhtajQ_bHV5NI");
 
 type Props = {
   id: number;
@@ -45,7 +49,7 @@ const Test: React.FC<Props> = ({ id }) => {
       {!testCompleted ? (
         <div>
           <div id="question">{questionIndex+1}. {questions[questionIndex].question}</div>
-          <img src={`../images/${questions[questionIndex].image}.jpg`} alt="question" id="testImage" />
+          <img src={supabase.storage.from("images").getPublicUrl(`${questions[questionIndex].image}.jpg`).data.publicUrl} alt="question" id="testImage" />
           <div id="answers">
           {questions[questionIndex].answers.map((answer, index) => (
             <button
@@ -62,9 +66,9 @@ const Test: React.FC<Props> = ({ id }) => {
         <div className="container column">
             <div id="question">{(questions.length / score) < 2 ? "Test complete!" : "You can do better!"}</div>
             {(questions.length / score) < 2 ? (
-            <img src={`/images/${completeImage}.jpg`} id="completeImage" alt="Cute Capy"/>
+            <img src={supabase.storage.from("images").getPublicUrl(`${completeImage}.jpg`).data.publicUrl} id="completeImage" alt="Cute Capy"/>
             ) : (
-            <img src="/images/notFound.png" alt="sad capy" id="sadCapy"/>
+            <img src={supabase.storage.from("images").getPublicUrl(`notFound.png`).data.publicUrl} alt="sad capy" id="sadCapy"/>
             )}
             <div>Your score: {score}/{questions.length}</div>
             <Link to="/lessons" className="main-button" onClick={() => {localStorage.setItem('practiceMode', "false")}}>Lessons</Link>

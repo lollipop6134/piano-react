@@ -1,38 +1,56 @@
 import './lessonPage.css';
 import { useParams } from 'react-router-dom';
-import { lessonPages } from '../../data/lessonPages';
 import { Footer } from '../../components/footer/footer';
 import { useState, useEffect } from 'react';
 import PracticePage from '../practicePage/practicePage';
 import Test from '../test/test';
+import { createClient } from "@supabase/supabase-js";
+
+interface Lesson {
+    id: number,
+    subtitle: string;
+    title: string;
+    text1: string;
+    text2: string;
+    text3: string;
+    text4: string;
+    text5: string;
+    img1: string;
+    img2: string;
+    img3: string;
+    notes: string[];
+    practiceImage: string;
+}
+
+const supabase = createClient("https://lxbcgtsajrvcgbuyizck.supabase.co",
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx4YmNndHNhanJ2Y2didXlpemNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk1MTkwNTcsImV4cCI6MjAxNTA5NTA1N30.Ey3PDIXgcVqGtU1GAWCPMAKuDgLOC7BhtajQ_bHV5NI");
+
 
 export function LessonPage() {
     const { id } = useParams<{ id?: string }>();
     const [practiceMode, setPracticeMode] = useState(false);
+    const [lesson, setLesson] = useState<Lesson | null>(null);
 
     useEffect(() => {
+        getLessonPages();
         const storedPracticeMode = localStorage.getItem('practiceMode');
         if (storedPracticeMode) {
             setPracticeMode(storedPracticeMode === 'true');
         }
-    }, []);
+    }, [id]);
+
+    async function getLessonPages() {
+        const { data } = await supabase.from("Lessons").select().eq(`id`, id);
+        setLesson(data?.[0] || null);
+        console.log(data);
+    }
 
     const handlePracticeModeToggle = (newPracticeMode: boolean) => {
         setPracticeMode(newPracticeMode);
         localStorage.setItem('practiceMode', newPracticeMode.toString());
     };
 
-    if (!id) {
-        return (
-            <div className='notFound'>
-                <img src="/images/notFound.png" alt="Sad capybara" />
-                <div>Lesson not found :(</div>
-            </div>
-        )
-    }
-    const lesson = lessonPages.find((l) => l.id === parseInt(id, 10));
-
-    if (!lesson) {
+    if (!id || !lesson) {
         return (
             <div className='notFound'>
                 <img src="/images/notFound.png" alt="Sad capybara" />
@@ -55,13 +73,13 @@ export function LessonPage() {
                 <div className='lessonParagraph'>
                     {lesson.text1}
                 </div>
-                <img src={lesson.img1} alt="1" className='main_img'/>
+                <img src={supabase.storage.from("images").getPublicUrl(`${lesson.img1}.jpg`).data.publicUrl} alt="1" className='main_img'/>
             </div>
             <div className='lessonSection'>
                 {lesson.text2}
             </div>
             <div className='lessonSection'>
-                <img src={lesson.img2} alt="2" className='main_img'/>
+                <img src={supabase.storage.from("images").getPublicUrl(`${lesson.img2}.jpg`).data.publicUrl} alt="2" className='main_img'/>
                 <div className='lessonParagraph'>
                     {lesson.text3}
                 </div>
@@ -70,7 +88,7 @@ export function LessonPage() {
                 <div className='lessonParagraph'>
                     {lesson.text4}
                 </div>
-                <img src={lesson.img3} alt="3" className='main_img'/>
+                <img src={supabase.storage.from("images").getPublicUrl(`${lesson.img3}.jpg`).data.publicUrl} alt="3" className='main_img'/>
             </div>
             {lesson.text5 !== '' && <div className='lessonSection'>
                 {lesson.text5}

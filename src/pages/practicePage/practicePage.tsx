@@ -4,6 +4,10 @@ import { notes, keyboard } from "../../data/notes"
 import { Howl } from "howler";
 import './practicePage.css';
 import { Link } from "react-router-dom";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient("https://lxbcgtsajrvcgbuyizck.supabase.co",
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx4YmNndHNhanJ2Y2didXlpemNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk1MTkwNTcsImV4cCI6MjAxNTA5NTA1N30.Ey3PDIXgcVqGtU1GAWCPMAKuDgLOC7BhtajQ_bHV5NI");
 
 const sounds: { [key: string]: Howl } = {};
 
@@ -106,7 +110,7 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
     function setImage():string {
         if (!firstRoundComplete)
         {
-            return `/images/${lessonNotes[currentNoteIndex]}.jpg`;
+            return lessonNotes[currentNoteIndex];
         } else {
             return practiceImage;
         }
@@ -114,17 +118,17 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
 
     return (
         <div id="practice">
-            {isLessonComplete && <img src={`/images/${completeImage}.jpg`} id="completeImage" alt="Cute Capy"/>}
+            {isLessonComplete && <img src={supabase.storage.from("images").getPublicUrl(`${completeImage}.jpg`).data.publicUrl} id="completeImage" alt="Cute Capy"/>}
             <div className="container row" id="practiceInfo">
             <div>
                     {id === 1 && <div id="currentNote">{setCurrentNoteElement()}</div>}
                     {id !== 1 && <div className="container row" id="practiceInfoImage">
                     {isLessonComplete ? "Lesson complete!" : firstRoundComplete ? "Let's try together! " : "Play this note: "}
-                        {!isLessonComplete && <img alt="current note" src={setImage()} id="currentNoteImage" />}
+                        {!isLessonComplete && <img alt="current note" src={supabase.storage.from("images").getPublicUrl(`${setImage()}.jpg`).data.publicUrl} id="currentNoteImage" />}
                         </div>}
                     <div id="feedback">{feedbackMessage}</div>
                 </div>
-                {id < 6 && !isLessonComplete && <img src={practiceImage} id="practiceImage" alt={`practice for ${id} lesson`} />}
+                {id < 6 && !isLessonComplete && <img src={supabase.storage.from("images").getPublicUrl(`${practiceImage}.jpg`).data.publicUrl} id="practiceImage" alt={`practice for ${id} lesson`} />}
             </div>
             {isLessonComplete && <Link to="/lessons" className="main-button" onClick={() => {localStorage.setItem('practiceMode', "false")}}>Lessons</Link>}
             {!isLessonComplete && <Piano notes={notes} clickHandler={handleClick} />}
