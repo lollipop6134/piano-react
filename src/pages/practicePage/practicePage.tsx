@@ -13,7 +13,7 @@ const sounds: { [key: string]: Howl } = {};
 
 notes.forEach((note) => {
   sounds[note.note] = new Howl({
-    src: [`/audio/${note.note}.mp3`],
+    src: supabase.storage.from("audio").getPublicUrl(`${note.note}.mp3`).data.publicUrl,
     preload: true,
   });
 });
@@ -102,7 +102,7 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
       }, [currentNoteIndex]);
     
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const audio = new Audio(`/audio/${e.currentTarget.value}.mp3`);
+        const audio = new Audio(supabase.storage.from("audio").getPublicUrl(`${e.currentTarget.value}.mp3`).data.publicUrl)
         audio.play();
         checkNote(e.currentTarget.value);
     };

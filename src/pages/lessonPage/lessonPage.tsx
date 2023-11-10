@@ -42,7 +42,6 @@ export function LessonPage() {
     async function getLessonPages() {
         const { data } = await supabase.from("Lessons").select().eq(`id`, id);
         setLesson(data?.[0] || null);
-        console.log(data);
     }
 
     const handlePracticeModeToggle = (newPracticeMode: boolean) => {
