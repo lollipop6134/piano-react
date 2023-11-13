@@ -19,7 +19,7 @@ const Test: React.FC<Props> = ({ id }) => {
   const [correctlyAnswered, setCorrectlyAnswered] = useState<boolean | null>(null);
   const questions = data;
 
-  const completeImages = ['Capy1', 'Capy4', 'Capy8', 'Capy9', 'Capy14', 'Capy15', 'Capy16'];
+  const completeImages = ['Capy1', 'Capy2', 'Capy3', 'Capy4', 'Capy5', 'Capy6', 'Capy7'];
   const completeImage = completeImages[Math.floor(Math.random() * completeImages.length)];
 
   const handleAnswer = (answer: string) => {
@@ -49,7 +49,7 @@ const Test: React.FC<Props> = ({ id }) => {
       {!testCompleted ? (
         <div>
           <div id="question">{questionIndex+1}. {questions[questionIndex].question}</div>
-          <img src={supabase.storage.from("images").getPublicUrl(`${questions[questionIndex].image}.jpg`).data.publicUrl} alt="question" id="testImage" />
+          <img src={supabase.storage.from("images").getPublicUrl(`${questions[questionIndex].image}.webp`).data.publicUrl} alt="question" id="testImage" />
           <div id="answers">
           {questions[questionIndex].answers.map((answer, index) => (
             <button
@@ -66,7 +66,7 @@ const Test: React.FC<Props> = ({ id }) => {
         <div className="container column">
             <div id="question">{(questions.length / score) < 2 ? "Test complete!" : "You can do better!"}</div>
             {(questions.length / score) < 2 ? (
-            <img src={supabase.storage.from("images").getPublicUrl(`${completeImage}.jpg`).data.publicUrl} id="completeImage" alt="Cute Capy"/>
+            <img src={supabase.storage.from("images").getPublicUrl(`${completeImage}.webp`).data.publicUrl} id="completeImage" alt="Cute Capy"/>
             ) : (
             <img src={supabase.storage.from("images").getPublicUrl(`notFound.png`).data.publicUrl} alt="sad capy" id="sadCapy"/>
             )}

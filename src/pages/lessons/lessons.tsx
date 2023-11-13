@@ -29,6 +29,7 @@ export function Lessons() {
 
     return (
         <>
+            {lessonPages.length < 1 && <div id='preloader'> Just a moment <div id='loader'></div></div>}
             <div className='lessons'>
                 {lessonPages
                     .sort((a, b) => a.id - b.id)

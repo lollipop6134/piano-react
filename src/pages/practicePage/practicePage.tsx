@@ -33,7 +33,7 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
 
     const badWords = ['No.', 'Try again!', 'Eww...', 'Bruh.'];
     const goodWords = ["Cool!", "You're so smart!", 'Good!', "Incredible!"];
-    const completeImages = ['Capy1', 'Capy4', 'Capy8', 'Capy9', 'Capy14', 'Capy15', 'Capy16'];
+    const completeImages = ['Capy1', 'Capy2', 'Capy3', 'Capy4', 'Capy5', 'Capy6', 'Capy7'];
     const completeImage = completeImages[Math.floor(Math.random() * completeImages.length)];
 
     let totalNotes: number;
@@ -118,17 +118,17 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
 
     return (
         <div id="practice">
-            {isLessonComplete && <img src={supabase.storage.from("images").getPublicUrl(`${completeImage}.jpg`).data.publicUrl} id="completeImage" alt="Cute Capy"/>}
+            {isLessonComplete && <img src={supabase.storage.from("images").getPublicUrl(`${completeImage}.webp`).data.publicUrl} id="completeImage" alt="Cute Capy"/>}
             <div className="container row" id="practiceInfo">
             <div>
                     {id === 1 && <div id="currentNote">{setCurrentNoteElement()}</div>}
                     {id !== 1 && <div className="container row" id="practiceInfoImage">
                     {isLessonComplete ? "Lesson complete!" : firstRoundComplete ? "Let's try together! " : "Play this note: "}
-                        {!isLessonComplete && <img alt="current note" src={supabase.storage.from("images").getPublicUrl(`${setImage()}.jpg`).data.publicUrl} id="currentNoteImage" />}
+                        {!isLessonComplete && <img alt="current note" src={supabase.storage.from("images").getPublicUrl(`${setImage()}.webp`).data.publicUrl} id="currentNoteImage" />}
                         </div>}
                     <div id="feedback">{feedbackMessage}</div>
                 </div>
-                {id < 6 && !isLessonComplete && <img src={supabase.storage.from("images").getPublicUrl(`${practiceImage}.jpg`).data.publicUrl} id="practiceImage" alt={`practice for ${id} lesson`} />}
+                {id < 6 && !isLessonComplete && <img src={supabase.storage.from("images").getPublicUrl(`${practiceImage}.webp`).data.publicUrl} id="practiceImage" alt={`practice for ${id} lesson`} />}
             </div>
             {isLessonComplete && <Link to="/lessons" className="main-button" onClick={() => {localStorage.setItem('practiceMode', "false")}}>Lessons</Link>}
             {!isLessonComplete && <Piano notes={notes} clickHandler={handleClick} />}

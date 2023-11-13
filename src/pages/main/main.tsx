@@ -2,14 +2,23 @@ import { Footer } from '../../components/footer/footer';
 import './main.css';
 import { Link } from 'react-router-dom';
 import { createClient } from "@supabase/supabase-js";
+import { useState } from 'react';
 
 const supabase = createClient("https://lxbcgtsajrvcgbuyizck.supabase.co",
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx4YmNndHNhanJ2Y2didXlpemNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk1MTkwNTcsImV4cCI6MjAxNTA5NTA1N30.Ey3PDIXgcVqGtU1GAWCPMAKuDgLOC7BhtajQ_bHV5NI");
 
 
 export function Main() {
+
+    const [loading, setLoading] = useState(true);
+
+    setTimeout(() => {
+        setLoading(false);
+    }, 300);
+
     return (
         <>
+            {loading && <div id='preloader'> Just a moment <div id='loader'></div></div>}
             <div className='content'>
                 <div id="section1" className='container row'>
                 <img src={supabase.storage.from("images").getPublicUrl(`Vector1.png`).data.publicUrl} alt="vector1" className='vector'/>
@@ -22,10 +31,10 @@ export function Main() {
                         </div>
                         <Link to={"/lessons"}><button className='main-button'>Try Now!</button></Link>
                     </div>
-                    <img src={supabase.storage.from("images").getPublicUrl(`Main1.jpg`).data.publicUrl} alt="Capy plays the piano" className="main_img"/>
+                    <img src={supabase.storage.from("images").getPublicUrl(`Main1.webp`).data.publicUrl} alt="Capy plays the piano" className="main_img"/>
                 </div>
                 <div id="section2" className='container row'>
-                    <img src={supabase.storage.from("images").getPublicUrl(`Main2.jpg`).data.publicUrl} alt="Capy and music" className='main_img'/>
+                    <img src={supabase.storage.from("images").getPublicUrl(`Main2.webp`).data.publicUrl} alt="Capy and music" className='main_img'/>
                     <div id="section2right">
                         <div className='header'>
                             Learn and Play the Piano
@@ -46,7 +55,7 @@ export function Main() {
                             our comprehensive tutorials will help you improve your skills and express your creativity.
                         </div>
                     </div>
-                    <img src={supabase.storage.from("images").getPublicUrl(`Main3.jpg`).data.publicUrl} alt="Capy and music" className='main_img'/>
+                    <img src={supabase.storage.from("images").getPublicUrl(`Main3.webp`).data.publicUrl} alt="Capy and music" className='main_img'/>
                 </div>
                 <div id="section4" className='container column'>
                     <div className='header'>
@@ -92,8 +101,8 @@ export function Main() {
                     </div>
                 </div>
                 <div className='container row' id="section6">
-                    <img src={supabase.storage.from("images").getPublicUrl(`Main4.jpg`).data.publicUrl} alt="Capy and Piano" className='main_img' />
-                    <img src={supabase.storage.from("images").getPublicUrl(`Main5.jpg`).data.publicUrl} alt="Capy and Piano" className='main_img' />
+                    <img src={supabase.storage.from("images").getPublicUrl(`Main4.webp`).data.publicUrl} alt="Capy and Piano" className='main_img' />
+                    <img src={supabase.storage.from("images").getPublicUrl(`Main5.webp`).data.publicUrl} alt="Capy and Piano" className='main_img' />
                     <img src={supabase.storage.from("images").getPublicUrl(`Vector4.png`).data.publicUrl} alt="vector 4" className='vector' />
                 </div>
             </div>
