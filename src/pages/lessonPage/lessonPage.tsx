@@ -19,7 +19,7 @@ interface Lesson {
     img2: string;
     img3: string;
     notes: string[];
-    practiceImage: string;
+    practiceImage: string[];
 }
 
 const supabase = createClient("https://lxbcgtsajrvcgbuyizck.supabase.co",

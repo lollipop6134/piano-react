@@ -21,7 +21,7 @@ notes.forEach((note) => {
 type Props = {
     id: number;
     practiceNotes: string[];
-    practiceImage: string;
+    practiceImage: string[];
   }
 
 const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => {
@@ -112,7 +112,7 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
         {
             return lessonNotes[currentNoteIndex];
         } else {
-            return practiceImage;
+            return practiceImage[0];
         }
     };
 
