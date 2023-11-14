@@ -59,9 +59,10 @@ img {
   }
   
   #loader {
-    width: 8vw;
-    height: 8vw;
-    border: 1vw solid #5F2300;
+    width: 9vw;
+    height: 9vw;
+    border: 1.3vw solid #5F2300;
+    border-top-color: #c0a989;
     margin-left: 4vw;
   }
 }

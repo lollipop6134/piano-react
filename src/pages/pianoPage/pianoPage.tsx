@@ -54,6 +54,7 @@ export function PianoPage() {
 
     return (
         <>
+        <div id="preloader">assdfsadf<div id="loader"></div></div>
           <Piano notes={notes} clickHandler={handleClick}/>
         </>
     )
