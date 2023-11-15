@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import data from "../../data/questions.json";
+import React, { useState, useEffect } from "react";
 import "./test.css"
 import { Link } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
@@ -11,19 +10,35 @@ type Props = {
   id: number;
 };
 
+interface Test {
+  question: string;
+  answers: string[];
+  correctAnswer: string;
+  image: string;
+}
+
 const Test: React.FC<Props> = ({ id }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [score, setScore] = useState(0);
   const [testCompleted, setTestCompleted] = useState(false);
   const [correctlyAnswered, setCorrectlyAnswered] = useState<boolean | null>(null);
-  const questions = data;
+  const [test, setTest] = useState<Test[] | null>(null);
 
   const completeImages = ['Capy1', 'Capy2', 'Capy3', 'Capy4', 'Capy5', 'Capy6', 'Capy7'];
   const completeImage = completeImages[Math.floor(Math.random() * completeImages.length)];
 
+  async function getTest() {
+    const { data } = await supabase.from("Test_1").select();
+    setTest(data);
+}
+
+useEffect(() => {
+      getTest();
+}, [])
+
   const handleAnswer = (answer: string) => {
-    const correctAnswer = questions[questionIndex].correctAnswer;
+    const correctAnswer = test?.[questionIndex].correctAnswer;
     const isCorrect = answer === correctAnswer;
   
     if (isCorrect) {
@@ -32,7 +47,7 @@ const Test: React.FC<Props> = ({ id }) => {
     setUserAnswers([...userAnswers, answer]);
     setCorrectlyAnswered(isCorrect);
   
-    if (questionIndex < questions.length - 1) {
+    if (questionIndex < test!.length - 1) {
       setTimeout(() => {
         setQuestionIndex(questionIndex + 1);
         setCorrectlyAnswered(null);
@@ -48,14 +63,14 @@ const Test: React.FC<Props> = ({ id }) => {
     <div id="test">
       {!testCompleted ? (
         <div>
-          <div id="question">{questionIndex+1}. {questions[questionIndex].question}</div>
-          <img src={supabase.storage.from("images").getPublicUrl(`${questions[questionIndex].image}.webp`).data.publicUrl} alt="question" id="testImage" />
+          <div id="question">{questionIndex+1}. {test?.[questionIndex].question}</div>
+          <img src={supabase.storage.from("images").getPublicUrl(`${test?.[questionIndex].image}.webp`).data.publicUrl} alt="question" id="testImage" />
           <div id="answers">
-          {questions[questionIndex].answers.map((answer, index) => (
+          {test?.[questionIndex].answers.map((answer, index) => (
             <button
             key={index}
             onClick={() => handleAnswer(answer)}
-            className={correctlyAnswered === null ? '' : (answer === questions[questionIndex].correctAnswer ? 'correct' : 'incorrect')}
+            className={correctlyAnswered === null ? '' : (answer === test?.[questionIndex].correctAnswer ? 'correct' : 'incorrect')}
             >
               {answer}
             </button>
@@ -64,13 +79,13 @@ const Test: React.FC<Props> = ({ id }) => {
         </div>
       ) : (
         <div className="container column">
-            <div id="question">{(questions.length / score) < 2 ? "Test complete!" : "You can do better!"}</div>
-            {(questions.length / score) < 2 ? (
+            <div id="question">{(test!.length / score) < 2 ? "Test complete!" : "You can do better!"}</div>
+            {(test!.length / score) < 2 ? (
             <img src={supabase.storage.from("images").getPublicUrl(`${completeImage}.webp`).data.publicUrl} id="completeImage" alt="Cute Capy"/>
             ) : (
             <img src={supabase.storage.from("images").getPublicUrl(`notFound.png`).data.publicUrl} alt="sad capy" id="sadCapy"/>
             )}
-            <div>Your score: {score}/{questions.length}</div>
+            <div>Your score: {score}/{test!.length}</div>
             <Link to="/lessons" className="main-button" onClick={() => {localStorage.setItem('practiceMode', "false")}}>Lessons</Link>
         </div>
       )}
