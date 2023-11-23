@@ -1,10 +1,9 @@
 import { Footer } from '../../components/footer/footer';
-import './account.css';
+import './auth.css';
 import { useState } from 'react';
 import { supabase } from '../../supabaseClient';
 
-export function Account() {
-    
+export function Auth() {
     const [login, setLogin] = useState('logIn');
 
     function signUpButton() {
@@ -21,7 +20,7 @@ export function Account() {
             <form>
                 <p>{login === 'logIn' ? 'Log In' : 'Sign Up'}</p>
                 <input />
-                <span>Username</span>
+                <span>Email</span>
                 <input type="password" />
                 <span>Password</span>
                 <button type="submit">Let's Go!</button>
