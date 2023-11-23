@@ -1,35 +1,46 @@
-import { Footer } from '../../components/footer/footer';
+import { useState } from 'react'
+import { supabase } from '../../supabaseClient'
 import './auth.css';
-import { useState } from 'react';
-import { supabase } from '../../supabaseClient';
 
 export function Auth() {
-    const [login, setLogin] = useState('logIn');
+  const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState('')
 
-    function signUpButton() {
-        setLogin('signUp');
-    }
-    
-    function logInButton() {
-        setLogin('logIn');
-    }
+  const handleLogin = async (event: any) => {
+    event.preventDefault()
 
-    return (
-        <>
-            <img src={supabase.storage.from("images").getPublicUrl(`Vector5.png`).data.publicUrl} alt="vector 5" className='vector' id="formVector"/>
-            <form>
-                <p>{login === 'logIn' ? 'Log In' : 'Sign Up'}</p>
-                <input />
-                <span>Email</span>
-                <input type="password" />
-                <span>Password</span>
-                <button type="submit">Let's Go!</button>
-            </form>
-            <div id="formButtons">
-                    <button onClick={signUpButton} id="signUpButton">Sign up</button>
-                    <button onClick={logInButton} id="logInButton">Log in</button>
-            </div>
-            <Footer />
-        </>
-    )
+    setLoading(true)
+    const { error } = await supabase.auth.signInWithOtp({ email })
+
+    if (error) {
+      alert(error.message)
+    } else {
+      alert('Check your email for the login link!')
+    }
+    setLoading(false)
+  }
+
+  return (
+    <div>
+      <div>
+        <form onSubmit={handleLogin}>
+          <div>
+            <input
+              className="inputField"
+              type="email"
+              placeholder="Your email"
+              value={email}
+              required={true}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <button className={'button block'} disabled={loading}>
+              {loading ? <span>Loading</span> : <span>Send magic link</span>}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
 }
