@@ -11,7 +11,7 @@ export function Menu() {
                 <Link to="/piano"><button>Piano</button></Link>
                 <Link to="/lessons" onClick={() => {localStorage.setItem('practiceMode', "false")}}><button>Lessons</button></Link>
             </div>
-            <Link to="/profile"><button>Profile</button></Link>
+            <Link to="/account"><button>Account</button></Link>
         </div>
         <Outlet />
         </>
