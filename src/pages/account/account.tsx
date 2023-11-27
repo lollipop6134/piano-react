@@ -20,7 +20,6 @@ interface AccountProps {
 export default function Account({ session }: AccountProps) {
   const [loading, setLoading] = useState<boolean>(true);
   const [username, setUsername] = useState<string | null>(null);
-  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
   useEffect(() => {
     let ignore = false;
@@ -31,7 +30,7 @@ export default function Account({ session }: AccountProps) {
 
       const { data, error } = await supabase
         .from('Users')
-        .select(`username, avatar_url`)
+        .select(`username`)
         .eq('id', user.id)
         .single();
 
@@ -40,7 +39,6 @@ export default function Account({ session }: AccountProps) {
           console.warn(error);
         } else if (data) {
           setUsername(data.username);
-          setAvatarUrl(data.avatar_url);
         }
       }
 
@@ -54,7 +52,7 @@ export default function Account({ session }: AccountProps) {
     };
   }, [session]);
 
-  async function updateProfile(event: React.FormEvent, newAvatarUrl: string) {
+  async function updateProfile(event: React.FormEvent) {
     event.preventDefault();
 
     setLoading(true);
@@ -63,15 +61,12 @@ export default function Account({ session }: AccountProps) {
     const updates = {
       id: user.id,
       username,
-      avatar_url: newAvatarUrl,
     };
 
     const { error } = await supabase.from('Users').upsert(updates);
 
     if (error) {
       alert(error.message);
-    } else {
-      setAvatarUrl(newAvatarUrl);
     }
 
     setLoading(false);
@@ -80,14 +75,7 @@ export default function Account({ session }: AccountProps) {
   return (
     <>
       <form
-        onSubmit={(e) => {
-          if (avatarUrl !== null) {
-            updateProfile(e, avatarUrl);
-          } else {
-            // Можно выполнить другое действие в случае, если avatarUrl равен null
-            console.error('Avatar URL is null');
-          }
-        }}
+        onSubmit={(e) => {updateProfile(e)}}
         className="form-widget"
       >
       <div>
