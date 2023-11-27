@@ -3,15 +3,7 @@ import { supabase } from '../../supabaseClient'
 import { Footer } from '../../components/footer/footer';
 import "./auth.css";
 
-interface User {
-    id: number;
-    username: string;
-    email: string;
-    completedLessons: number[];
-}
-
 export default function Auth() {
-  const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
@@ -20,7 +12,6 @@ export default function Auth() {
   const handleSignUp = async (event: any) => {
     event.preventDefault()
 
-    setLoading(true)
     const { error } = await supabase.auth.signUp({
       email: email,
       password: password,
@@ -29,7 +20,6 @@ export default function Auth() {
     if (error) {
       alert(error.message)
     } else {
-      alert('Check your email for the login link!')
       const { error } = await supabase.from(`Users`).insert([
         {
             username: username,
@@ -39,15 +29,15 @@ export default function Auth() {
       ])
       if (error) {
         alert(error.message)
+      } else {
+        alert('Check your email for the login link!')
       }
     }
-    setLoading(false)
   }
 
   const handleSignIn = async (event: any) => {
     event.preventDefault()
 
-    setLoading(true)
     const { error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
@@ -85,9 +75,7 @@ export default function Auth() {
               required={true}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button disabled={loading}>
-              {loading ? <span>Loading</span> : isSignUp ? "Send magic link" : "Sign In"}
-            </button>
+            <button> {isSignUp ? "Send magic link" : "Sign In"} </button>
             </div>
         </form>
         <div id="formButtons">

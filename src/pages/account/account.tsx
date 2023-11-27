@@ -1,14 +1,3 @@
-// import { useState, useEffect } from 'react';
-// import { supabase } from '../../supabaseClient';
-
-// export default function Account() {
-
-//   return (
-//       <>
-//       </>
-//   );
-// }
-
 import { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
 import { Footer } from '../../components/footer/footer';
@@ -74,16 +63,13 @@ export default function Account({ session }: AccountProps) {
 
   return (
     <>
-      <form
-        onSubmit={(e) => {updateProfile(e)}}
-        className="form-widget"
-      >
+      <form onSubmit={(e) => {updateProfile(e)}} >
       <div>
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session.user.email} disabled />
       </div>
       <div>
-        <label htmlFor="username">Name</label>
+        <label htmlFor="username">Username</label>
         <input
           id="username"
           type="text"
@@ -94,18 +80,20 @@ export default function Account({ session }: AccountProps) {
       </div>
 
       <div>
-        <button className="button block primary" type="submit" disabled={loading}>
+        <button type="submit" disabled={loading}>
           {loading ? 'Loading ...' : 'Update'}
         </button>
       </div>
 
       <div>
-        <button className="button block" type="button" onClick={() => supabase.auth.signOut()}>
+        <button type="button" onClick={() => supabase.auth.signOut()}>
           Sign Out
         </button>
       </div>
     </form>
-    <Footer />
+    <div className='bottom'>
+      <Footer />
+    </div>
     </>
   );
 }
