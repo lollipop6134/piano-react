@@ -1,0 +1,34 @@
+#accountInputs div{
+    margin-bottom: 2vw;
+}
+
+#accountButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 140%;
+    margin-top: 4vw;
+}
+
+#accountButtons button {
+    margin-bottom: 2vw;
+}
+
+#progress {
+    width: 136%;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 1.5vw;
+}
+
+@media screen and (orientation: portrait) {
+    #progress {
+        font-size: 4.5vw;
+        width: 100%;
+    }
+
+    #accountButtons {
+        flex-direction: column;
+        width: 100%;
+    }
+}
