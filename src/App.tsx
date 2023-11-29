@@ -37,7 +37,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Main />} />
             <Route path='/piano' element={<PianoPage />} />
-            <Route path='/lessons' element={<Lessons />} />
+            <Route path='/lessons' element={<Lessons key={session?.user.id} session={session}/>} />
             <Route path='/lesson/:id' element={<LessonPage />} />
             <Route path='/account' element={!session ? <Auth /> : <Account key={session.user.id} session={session} />} />
           </Routes>

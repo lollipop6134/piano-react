@@ -13,6 +13,7 @@ export default function Account({ session }: AccountProps) {
   const [countLessons, setCountLessons] = useState(0);
   const [countCompletedLessons, setCountCompletedLessons] = useState(0);
 
+
   useEffect(() => {
 
     async function getProfile() {
@@ -20,6 +21,7 @@ export default function Account({ session }: AccountProps) {
       const { data, error } = await supabase
         .from('Users')
         .select(`id, username, completedLessons`)
+        .eq('email', session.user.email)
         .single();
 
         if (error) {
@@ -54,8 +56,6 @@ export default function Account({ session }: AccountProps) {
     const updates = {
       username: username,
     };
-
-    console.log(username, id)
 
     const { error } = await supabase.from('Users').update(updates).match({id: id})
 
