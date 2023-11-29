@@ -9,39 +9,60 @@ interface AccountProps {
 
 export default function Account({ session }: AccountProps) {
   const [username, setUsername] = useState<string | null>(null);
+  const [id, setId] = useState<number | null>(null);
+  const [countLessons, setCountLessons] = useState(0);
+  const [countCompletedLessons, setCountCompletedLessons] = useState(0);
 
   useEffect(() => {
 
     async function getProfile() {
-      const { user } = session;
 
       const { data, error } = await supabase
         .from('Users')
-        .select(`username`)
-        .eq('id', user.id)
+        .select(`id, username, completedLessons`)
         .single();
 
         if (error) {
-          console.warn(error);
+          alert(error.message);
         } else if (data) {
+          setId(data.id);
           setUsername(data.username);
+          setCountCompletedLessons(data.completedLessons.length);
         }
     }
 
+    async function getLessons() {
+
+      const { data, error } = await supabase
+      .from('Lessons')
+      .select(`id`);
+
+      if (error) {
+        alert(error.message);
+      } else if (data) {
+        setCountLessons(data.length);
+      }
+    }
+
     getProfile();
+    getLessons();
   }, [session]);
 
   async function updateProfile(event: React.FormEvent) {
     event.preventDefault();
 
     const updates = {
-      username,
+      username: username,
     };
 
-    const { error } = await supabase.from('Users').upsert(updates);
+    console.log(username, id)
+
+    const { error } = await supabase.from('Users').update(updates).match({id: id})
 
     if (error) {
       alert(error.message);
+    } else {
+      alert(`OK!`)
     }
   }
 
@@ -70,7 +91,7 @@ export default function Account({ session }: AccountProps) {
         </div>
       </div>
       <div id='progress'>
-        Your progress: 6/12 (50%)
+        Your progress: {countCompletedLessons}/{countLessons} ({Math.round(countCompletedLessons/countLessons*100)}%)
       </div>
       <div id='accountButtons'>
         <button type="submit">Update</button>
