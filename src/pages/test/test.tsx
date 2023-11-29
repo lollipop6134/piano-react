@@ -5,6 +5,7 @@ import { supabase } from '../../supabaseClient';
 
 type Props = {
   id: number;
+  session: any;
 };
 
 interface Test {
@@ -14,7 +15,7 @@ interface Test {
   image: string;
 }
 
-const Test: React.FC<Props> = ({ id }) => {
+const Test: React.FC<Props> = ({ id, session }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [score, setScore] = useState(0);
@@ -34,6 +35,30 @@ useEffect(() => {
       getTest();
 }, [])
 
+async function addToCompletedLessons() {
+  const { data, error } = await supabase
+  .from('Users')
+  .select('completedLessons')
+  .eq('email', session.user.email);
+
+  if (error) {
+      alert(error.message)
+  } else {
+      const currentCompletedLessons = data?.[0].completedLessons || [];
+
+      if (!currentCompletedLessons.includes(id)) {
+      const updatedCompletedLessons = [...currentCompletedLessons, id];
+      const { error } = await supabase
+      .from('Users')
+      .update({ completedLessons: updatedCompletedLessons})
+      .eq('email', session.user.email)
+    
+      if (error) {
+          alert(error.message)
+      }
+      }
+}}
+
   const handleAnswer = (answer: string) => {
     const correctAnswer = test?.[questionIndex].correctAnswer;
     const isCorrect = answer === correctAnswer;
@@ -50,6 +75,9 @@ useEffect(() => {
         setCorrectlyAnswered(null);
       }, 1500);
     } else {
+      if (test!.length / score < 2 ) {
+        addToCompletedLessons()
+      }
       setTimeout(() => {
         setTestCompleted(true);
       }, 1500);
