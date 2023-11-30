@@ -9,9 +9,34 @@ interface Lesson {
     subtitle: string;
 }
 
-export function Lessons() {
+interface LessonsProps {
+    session: any;
+}
+
+export function Lessons({ session }: LessonsProps) {
 
     const [lessonPages, setLessonPages] = useState<Lesson[]>([]);
+    const [completedLessons, setCompletedLessons] = useState<number[]>([]);
+
+    async function getCompletedLessons() {
+        if (session && session.user) {
+            const { data, error } = await supabase
+            .from('Users')
+            .select('completedLessons')
+            .eq('email', session.user.email)
+            .single();
+    
+            if (error) {
+                alert(error.message);
+            } else {
+                setCompletedLessons(data?.completedLessons || []);
+            }
+        }
+    }
+
+    useEffect(() => {
+        getCompletedLessons();
+    }, [session])
 
     useEffect(() => {
         getLessonPages();
@@ -21,7 +46,6 @@ export function Lessons() {
         const { data } = await supabase.from("Lessons").select(`id, subtitle`);
         setLessonPages(data || []);
     }
-
 
     return (
         <>
@@ -33,7 +57,7 @@ export function Lessons() {
                         <Link to={`/lesson/${lesson.id}`} className='lesson' key={lesson.id}>
                             Lesson {lesson.id}<br />
                             {lesson.subtitle}
-                            {/* { ??? && <div id="complete">Complete!</div> } */}
+                            {completedLessons.includes(lesson.id) && <div id="complete">Complete!</div>}
                         </Link>
                     ))}
             </div>

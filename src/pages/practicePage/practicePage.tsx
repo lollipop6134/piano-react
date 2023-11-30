@@ -19,9 +19,10 @@ type Props = {
     id: number;
     practiceNotes: string[];
     practiceImage: string[];
+    session: any;
   }
 
-const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => {
+const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage, session }) => {
     const [currentNoteIndex, setCurrentNoteIndex] = useState(0);
     const [feedbackMessage, setFeedbackMessage] = useState("");
     const [isLessonComplete, setIsLessonComplete] = useState(false);
@@ -37,6 +38,30 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
     if (id < 6) totalNotes = 10;
     else totalNotes = practiceNotes.length;
 
+    async function addToCompletedLessons() {
+        const { data, error } = await supabase
+        .from('Users')
+        .select('completedLessons')
+        .eq('email', session.user.email);
+      
+        if (error) {
+            alert(error.message)
+        } else {
+            const currentCompletedLessons = data?.[0].completedLessons || [];
+      
+            if (!currentCompletedLessons.includes(id)) {
+            const updatedCompletedLessons = [...currentCompletedLessons, id];
+            const { error } = await supabase
+            .from('Users')
+            .update({ completedLessons: updatedCompletedLessons})
+            .eq('email', session.user.email)
+          
+            if (error) {
+                alert(error.message)
+            }
+            }
+      }}
+
     function setCurrentNoteElement(): string {
         if (currentNoteIndex < totalNotes) {
             return "Play this note: " + (lessonNotes[currentNoteIndex])[0] + " of the " + ((lessonNotes[currentNoteIndex].length) >= 2 ? lessonNotes[currentNoteIndex][1] : "minor") + " octave";
@@ -49,11 +74,14 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage }) => 
         if (currentNoteIndex === totalNotes) {
             if (id < 6) {
                 setIsLessonComplete(true);
+                addToCompletedLessons();
             } else {
                 if (firstRoundComplete) {
                     setIsLessonComplete(true);
+                    addToCompletedLessons();
                   } else {
                     setFirstRoundComplete(true);
+                    addToCompletedLessons();
                     setCurrentNoteIndex(0);
                   }
             }

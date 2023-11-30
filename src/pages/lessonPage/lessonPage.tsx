@@ -22,7 +22,11 @@ interface Lesson {
     practiceImage: string[];
 }
 
-export function LessonPage() {
+interface lessonPageProps {
+    session: any;
+}
+
+export function LessonPage({ session }: lessonPageProps) {
     const { id } = useParams<{ id?: string }>();
     const [practiceMode, setPracticeMode] = useState(false);
     const [lesson, setLesson] = useState<Lesson | null>(null);
@@ -61,7 +65,7 @@ export function LessonPage() {
         <>
         {(lesson.img1 === null || lesson.img2 === null || lesson.img3 === null) && <div id='preloader'> Just a moment <div id='loader'></div></div>}
         {practiceMode ? ( lesson.id !== 9 ?
-            <PracticePage practiceNotes={lesson.notes} id={lesson.id} practiceImage={lesson.practiceImage} /> : <Test id={lesson.id} />
+            <PracticePage practiceNotes={lesson.notes} id={lesson.id} practiceImage={lesson.practiceImage} session={session}/> : <Test id={lesson.id} session={session}/>
         ) : (
             <>
             <div id="lessonPage">

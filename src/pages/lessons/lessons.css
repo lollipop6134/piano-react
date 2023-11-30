@@ -55,4 +55,10 @@
     .lesson:hover {
         transform: translateY(-1.7vw);
     }
+
+    #complete {
+        margin-bottom: -4.5vw;
+        width: calc(100% + 9.5vw);
+        border: 0.8vmin solid #5F2300;
+    }
 }
