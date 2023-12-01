@@ -8,6 +8,7 @@ export default function Auth() {
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
   const [isSignUp, setIsSignUp] = useState(false)
+  const [isHidePassword, setIsHidePassword] = useState(true)
 
   const handleSignUp = async (event: any) => {
     event.preventDefault()
@@ -68,13 +69,19 @@ export default function Auth() {
               required={true}
               onChange={(e) => setUsername(e.target.value)}
             />}
-            <input
-              type="password"
-              placeholder="Your password"
-              value={password}
-              required={true}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div>
+              <input
+                type= {isHidePassword ? "password" : "text"}
+                placeholder="Your password"
+                value={password}
+                required={true}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <img
+                src={supabase.storage.from("images").getPublicUrl(isHidePassword ? `eye.webp` : `hide.webp`).data.publicUrl}
+                alt='see/hide password' id='eye'
+                onClick={() => {setIsHidePassword(!isHidePassword)}}/>
+            </div>
             <button> {isSignUp ? "Send magic link" : "Sign In"} </button>
             </div>
         </form>

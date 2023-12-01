@@ -157,6 +157,14 @@ form button:hover {
     cursor: pointer;
 }
 
+#eye {
+    width: 1.7vw;
+    cursor: pointer;
+    position: absolute;
+    margin-top: 0.5vw;
+    margin-left: -2.5vw;
+}
+
 @media screen and (orientation: portrait) {
     form {
         width: 80vw;
@@ -204,5 +212,11 @@ form button:hover {
     .bottom {
         left: 0;
         width: 100%;
+    }
+
+    #eye {
+        width: 6vw;
+        margin-top: 2.5vw;
+        margin-left: -7.5vw;
     }
 }
