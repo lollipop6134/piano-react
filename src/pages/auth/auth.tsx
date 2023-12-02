@@ -49,6 +49,33 @@ export default function Auth() {
     }
   }
 
+  const handleChangePassword = async (event: any) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email)
+    if (error) {
+      alert(error.message)
+    } else {
+      alert("Check Email!")
+    }
+  }
+
+  useEffect(() => {
+    supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === "PASSWORD_RECOVERY") {
+        const newPassword = prompt("What would you like your new password to be?");
+        if (newPassword !== null) {
+          const { data, error } = await supabase.auth.updateUser({ password: newPassword });
+  
+          if (data) {
+            alert("Password updated successfully!");
+          }
+          if (error) {
+            alert("There was an error updating your password.");
+          }
+        }
+      }
+    });
+  }, []);
+
   return (
     <>
         <img src={supabase.storage.from("images").getPublicUrl(`Vector5.png`).data.publicUrl} alt="vector 5" className='vector' id="formVector"/>
@@ -79,9 +106,10 @@ export default function Auth() {
               />
               <img
                 src={supabase.storage.from("images").getPublicUrl(isHidePassword ? `eye.webp` : `hide.webp`).data.publicUrl}
-                alt='see/hide password' id='eye'
+                alt='show/hide password' id='eye'
                 onClick={() => {setIsHidePassword(!isHidePassword)}}/>
             </div>
+            { !isSignUp && <div id='changePassword' onClick={handleChangePassword}>Forgot password?</div> }
             <button> {isSignUp ? "Send magic link" : "Sign In"} </button>
             </div>
         </form>

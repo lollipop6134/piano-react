@@ -14,10 +14,6 @@ form {
     position: relative;
 }
 
-form p {
-    font-size: 2vw;
-}
-
 form input {
     border: none;
     background-color: #FCF8F2;
@@ -163,6 +159,23 @@ form button:hover {
     position: absolute;
     margin-top: 0.5vw;
     margin-left: -2.5vw;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #FCF8F2 inset !important;
+    -webkit-text-fill-color: #8a3100;
+}
+
+#changePassword {
+    cursor: pointer;
+    line-height: 0;
+}
+
+#changePassword:hover {
+    text-decoration: underline;
 }
 
 @media screen and (orientation: portrait) {
