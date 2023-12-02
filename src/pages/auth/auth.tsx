@@ -50,7 +50,9 @@ export default function Auth() {
   }
 
   const handleChangePassword = async (event: any) => {
-    const { error } = await supabase.auth.resetPasswordForEmail(email)
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: "https://piano-react-lollipop.vercel.app/account"
+    })
     if (error) {
       alert(error.message)
     } else {
