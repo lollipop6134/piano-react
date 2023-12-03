@@ -49,19 +49,30 @@ export function Lessons({ session }: LessonsProps) {
 
     return (
         <>
-            {lessonPages.length < 1 && <div id='preloader'> Just a moment <div id='loader'></div></div>}
+        {session !== null ? <>
+        {lessonPages.length < 1 && <div id='preloader'> Just a moment <div id='loader'></div></div>}
             <div className='lessons'>
                 {lessonPages
                     .sort((a, b) => a.id - b.id)
                     .map((lesson) => (
-                        <Link to={`/lesson/${lesson.id}`} className='lesson' key={lesson.id}>
-                            Lesson {lesson.id}<br />
+                        <Link
+                            to={ completedLessons.includes(lesson.id) || completedLessons.includes(lesson.id-1) ? `/lesson/${lesson.id}` : ''}
+                            className={ completedLessons.includes(lesson.id) || completedLessons.includes(lesson.id-1) ? 'lesson' : 'lesson disabled'}
+                            key={lesson.id}>
+                            Lesson {lesson.id} <br />
                             {lesson.subtitle}
                             {completedLessons.includes(lesson.id) && <div id="complete">Complete!</div>}
                         </Link>
                     ))}
             </div>
             <Footer />
+        </> :
+        <>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '75vh'}}>
+        <Link to={"/account"} className='main-button'>Sign In to start lessons!</Link>
+        </div>
+        <div className='bottom'><Footer /></div>
+        </>}
         </>
     )
 }

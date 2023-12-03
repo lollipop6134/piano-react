@@ -26,6 +26,13 @@
     flex-direction: column;
 }
 
+.disabled {
+    background-color: #ffdeb287;
+    border: 0.7vmin solid #5f23008c;
+    color: #5f23006a;
+    pointer-events: none;
+}
+
 .lesson:hover {
     transform: translateY(-0.5vw);
 }
