@@ -18,7 +18,7 @@ export function Main() {
             {loading && <div id='preloader'> Just a moment <div id='loader'></div></div>}
             <div className='content'>
                 <div id="section1" className='container row'>
-                <img src={supabase.storage.from("images").getPublicUrl(`Vector1.png`).data.publicUrl} alt="vector1" className='vector'/>
+                <img src='/images/Vector1.png' alt="vector1" className='vector'/>
                     <div id="section1left">
                         <div className="header">
                             Be like Capy. Be cool. Play the Piano.
@@ -28,10 +28,10 @@ export function Main() {
                         </div>
                         <Link to={"/lessons"}><button className='main-button'>Try Now!</button></Link>
                     </div>
-                    <img src={supabase.storage.from("images").getPublicUrl(`Main1.webp`).data.publicUrl} alt="Capy plays the piano" className="main_img"/>
+                    <img src='images/Main1.webp'alt="Capy plays the piano" className="main_img"/>
                 </div>
                 <div id="section2" className='container row'>
-                    <img src={supabase.storage.from("images").getPublicUrl(`Main2.webp`).data.publicUrl} alt="Capy and music" className='main_img'/>
+                    <img src='images/Main2.webp' alt="Capy and music" className='main_img'/>
                     <div id="section2right">
                         <div className='header'>
                             Learn and Play the Piano
@@ -42,7 +42,7 @@ export function Main() {
                     </div>
                 </div>
                 <div id="section3" className='container row'>
-                <img src={supabase.storage.from("images").getPublicUrl(`Vector2.png`).data.publicUrl} alt="vector2" className='vector'/>
+                <img src='/images/Vector2.png' alt="vector2" className='vector'/>
                     <div id="section3left">
                         <div className='header'>
                             Learn to Play the Piano
@@ -52,7 +52,7 @@ export function Main() {
                             our comprehensive tutorials will help you improve your skills and express your creativity.
                         </div>
                     </div>
-                    <img src={supabase.storage.from("images").getPublicUrl(`Main3.webp`).data.publicUrl} alt="Capy and music" className='main_img'/>
+                    <img src='images/Main3.webp' alt="Capy and music" className='main_img'/>
                 </div>
                 <div id="section4" className='container column'>
                     <div className='header'>
@@ -88,7 +88,7 @@ export function Main() {
                     </div>
                 </div>
                 <div id="section5" className='container column'>
-                    <img src={supabase.storage.from("images").getPublicUrl(`Vector3.png`).data.publicUrl} alt="vector 3" className='vector'/>
+                    <img src='/images/Vector3.png' alt="vector 3" className='vector'/>
                     <div className='header'>
                         About PianoCapy
                     </div>
@@ -98,9 +98,9 @@ export function Main() {
                     </div>
                 </div>
                 <div className='container row' id="section6">
-                    <img src={supabase.storage.from("images").getPublicUrl(`Main4.webp`).data.publicUrl} alt="Capy and Piano" className='main_img' />
-                    <img src={supabase.storage.from("images").getPublicUrl(`Main5.webp`).data.publicUrl} alt="Capy and Piano" className='main_img' />
-                    <img src={supabase.storage.from("images").getPublicUrl(`Vector4.png`).data.publicUrl} alt="vector 4" className='vector' />
+                    <img src='images/Main4.webp' alt="Capy and Piano" className='main_img' />
+                    <img src='images/Main5.webp' alt="Capy and Piano" className='main_img' />
+                    <img src='images/Vector4.png' alt="vector 4" className='vector' />
                 </div>
             </div>
             <Footer />

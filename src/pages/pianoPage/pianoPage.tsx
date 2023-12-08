@@ -2,13 +2,12 @@ import React, { useEffect } from "react"
 import Piano from "../../components/piano/piano"
 import { notes, keyboard } from "../../data/notes"
 import { Howl } from "howler";
-import { supabase } from '../../supabaseClient';
 
 const sounds: { [key: string]: Howl } = {};
 
 notes.forEach((note) => {
   sounds[note.note] = new Howl({
-    src: supabase.storage.from("audio").getPublicUrl(`${note.note}.mp3`).data.publicUrl,
+    src: `/audio/${note.note}.mp3`,
     preload: true,
   });
 });
@@ -44,7 +43,7 @@ export function PianoPage() {
     }, []);
   
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      const audio = new Audio(supabase.storage.from("audio").getPublicUrl(`${e.currentTarget.value}.mp3`).data.publicUrl)
+      const audio = new Audio(`/audio/${e.currentTarget.value}.mp3`)
       audio.play();
     }
 

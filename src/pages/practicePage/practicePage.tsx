@@ -10,7 +10,7 @@ const sounds: { [key: string]: Howl } = {};
 
 notes.forEach((note) => {
   sounds[note.note] = new Howl({
-    src: supabase.storage.from("audio").getPublicUrl(`${note.note}.mp3`).data.publicUrl,
+    src: `/audio/${note.note}.mp3`,
     preload: true,
   });
 });
@@ -81,7 +81,6 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage, sessi
                     addToCompletedLessons();
                   } else {
                     setFirstRoundComplete(true);
-                    addToCompletedLessons();
                     setCurrentNoteIndex(0);
                   }
             }
@@ -127,7 +126,7 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage, sessi
       }, [currentNoteIndex]);
     
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const audio = new Audio(supabase.storage.from("audio").getPublicUrl(`${e.currentTarget.value}.mp3`).data.publicUrl)
+        const audio = new Audio(`/audio/${e.currentTarget.value}.mp3`)
         audio.play();
         checkNote(e.currentTarget.value);
     };
@@ -143,17 +142,17 @@ const PracticePage: React.FC<Props> = ({ id, practiceNotes, practiceImage, sessi
 
     return (
         <div id="practice">
-            {isLessonComplete && <img src={supabase.storage.from("images").getPublicUrl(`${completeImage}.webp`).data.publicUrl} id="completeImage" alt="Cute Capy"/>}
+            {isLessonComplete && <img src={`/images/${completeImage}.webp`} id="completeImage" alt="Cute Capy"/>}
             <div className="container row" id="practiceInfo">
             <div>
                     {id === 1 && <div id="currentNote">{setCurrentNoteElement()}</div>}
                     {id !== 1 && <div className="container row" id="practiceInfoImage">
                     {isLessonComplete ? "Lesson complete!" : firstRoundComplete ? "Let's try together! " : "Play this note: "}
-                        {!isLessonComplete && <img alt="current note" src={supabase.storage.from("images").getPublicUrl(`${setImage()}.webp`).data.publicUrl} id="currentNoteImage" />}
+                        {!isLessonComplete && <img alt="current note" src={'/images/'+ setImage()+'.webp'} id="currentNoteImage" />}
                         </div>}
                     <div id="feedback">{feedbackMessage}</div>
                 </div>
-                {id < 6 && !isLessonComplete && <img src={supabase.storage.from("images").getPublicUrl(`${practiceImage}.webp`).data.publicUrl} id="practiceImage" alt={`practice for ${id} lesson`} />}
+                {id < 6 && !isLessonComplete && <img src={`/images/${practiceImage}.webp`} id="practiceImage" alt={`practice for ${id} lesson`} />}
             </div>
             {isLessonComplete && <Link to="/lessons" className="main-button" onClick={() => {localStorage.setItem('practiceMode', "false")}}>Lessons</Link>}
             {!isLessonComplete && <Piano notes={notes} clickHandler={handleClick} />}

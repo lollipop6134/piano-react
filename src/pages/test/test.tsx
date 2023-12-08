@@ -89,7 +89,7 @@ async function addToCompletedLessons() {
       {!testCompleted ? (
         <div>
           <div id="question">{questionIndex+1}. {test?.[questionIndex].question}</div>
-          <img src={supabase.storage.from("images").getPublicUrl(`${test?.[questionIndex].image}.webp`).data.publicUrl} alt="question" id="testImage" />
+          <img src={`/images/${test?.[questionIndex].image}.webp`} alt="question" id="testImage" />
           <div id="answers">
           {test?.[questionIndex].answers.map((answer, index) => (
             <button
@@ -106,9 +106,9 @@ async function addToCompletedLessons() {
         <div className="container column">
             <div id="question">{(test!.length / score) < 2 ? "Test complete!" : "You can do better!"}</div>
             {(test!.length / score) < 2 ? (
-            <img src={supabase.storage.from("images").getPublicUrl(`${completeImage}.webp`).data.publicUrl} id="completeImage" alt="Cute Capy"/>
+            <img src={`images/${completeImage}.webp`} id="completeImage" alt="Cute Capy"/>
             ) : (
-            <img src={supabase.storage.from("images").getPublicUrl(`notFound.png`).data.publicUrl} alt="sad capy" id="sadCapy"/>
+            <img src='images/notFound.png' alt="sad capy" id="sadCapy"/>
             )}
             <div>Your score: {score}/{test!.length}</div>
             <Link to="/lessons" className="main-button" onClick={() => {localStorage.setItem('practiceMode', "false")}}>Lessons</Link>

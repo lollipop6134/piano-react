@@ -12,7 +12,7 @@ const Piano: React.FC<Props> = ({ notes, clickHandler }) =>{
 
     return (
         <>
-            <div id="rotate">Please, rotate your phone<img src={supabase.storage.from("images").getPublicUrl(`RotatePhone.png`).data.publicUrl} /></div>
+            <div id="rotate">Please, rotate your phone<img src='/images/RotatePhone.png' /></div>
             <div id="piano">
                 {notes.map((element: NoteType) => (
                   <Note

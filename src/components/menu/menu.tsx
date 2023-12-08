@@ -7,7 +7,7 @@ export function Menu() {
         <>
         <div id="menu-container">
             <div id="left">
-                <Link to="/"><img src={supabase.storage.from("images").getPublicUrl(`logo.png`).data.publicUrl} alt='logo'></img></Link>
+                <Link to="/"><img src='/images/logo.png' alt='logo'></img></Link>
                 <Link to="/piano"><button>Piano</button></Link>
                 <Link to="/lessons" onClick={() => {localStorage.setItem('practiceMode', "false")}}><button>Lessons</button></Link>
             </div>

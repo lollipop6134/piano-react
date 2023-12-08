@@ -77,7 +77,7 @@ export default function Auth() {
 
   return (
     <>
-        <img src={supabase.storage.from("images").getPublicUrl(`Vector5.png`).data.publicUrl} alt="vector 5" className='vector' id="formVector"/>
+        <img src='/images/Vector5.png' alt="vector 5" className='vector' id="formVector"/>
         <form onSubmit={ isSignUp ? handleSignUp : handleSignIn}>
             <div className="header">Sign {isSignUp ? "Up" : "In"}</div>
             <div id='inputs'>
@@ -104,7 +104,7 @@ export default function Auth() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <img
-                src={supabase.storage.from("images").getPublicUrl(isHidePassword ? `eye.webp` : `hide.webp`).data.publicUrl}
+                src={`images/${(isHidePassword ? 'eye.webp' : 'hide.webp')}`}
                 alt='show/hide password' id='eye'
                 onClick={() => {setIsHidePassword(!isHidePassword)}}/>
             </div>

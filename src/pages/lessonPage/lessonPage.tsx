@@ -54,7 +54,7 @@ export function LessonPage({ session }: lessonPageProps) {
             <>
                 {(lesson?.img1 !== null || lesson?.img2 !== null || lesson?.img3 !== null) && <div id='preloader'> Just a moment <div id='loader'></div></div>}
                 <div className='notFound'>
-                    <img src={supabase.storage.from("images").getPublicUrl(`notFound.png`).data.publicUrl} alt="Sad capybara" />
+                    <img src='/images/notFound.png' alt="Sad capybara" />
                     <div>Lesson not found :(</div>
                 </div>
             </>
@@ -76,13 +76,13 @@ export function LessonPage({ session }: lessonPageProps) {
                 <div className='lessonParagraph'>
                     {lesson.text1}
                 </div>
-                <img src={supabase.storage.from("images").getPublicUrl(`${lesson.img1}.webp`).data.publicUrl} alt="1" className='main_img'/>
+                <img src={`/images/${lesson.img1}.webp`} alt="1" className='main_img'/>
             </div>
             <div className='lessonSection'>
                 {lesson.text2}
             </div>
             <div className='lessonSection'>
-                <img src={supabase.storage.from("images").getPublicUrl(`${lesson.img2}.webp`).data.publicUrl} alt="2" className='main_img'/>
+                <img src={`/images/${lesson.img2}.webp`} alt="2" className='main_img'/>
                 <div className='lessonParagraph'>
                     {lesson.text3}
                 </div>
@@ -91,7 +91,7 @@ export function LessonPage({ session }: lessonPageProps) {
                 <div className='lessonParagraph'>
                     {lesson.text4}
                 </div>
-                <img src={supabase.storage.from("images").getPublicUrl(`${lesson.img3}.webp`).data.publicUrl} alt="3" className='main_img'/>
+                <img src={`/images/${lesson.img3}.webp`} alt="3" className='main_img'/>
             </div>
             {lesson.text5 !== '' && <div className='lessonSection'>
                 {lesson.text5}
