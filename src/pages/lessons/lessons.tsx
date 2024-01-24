@@ -56,7 +56,7 @@ export function Lessons({ session }: LessonsProps) {
                     .sort((a, b) => a.id - b.id)
                     .map((lesson) => (
                         <Link
-                            to={ completedLessons.includes(lesson.id) || completedLessons.includes(lesson.id-1) ? `/lesson/${lesson.id}` : ''}
+                            to={ completedLessons.includes(lesson.id) || completedLessons.includes(lesson.id-1) || (completedLessons.length === 0 && lesson.id === 1) ? `/lesson/${lesson.id}` : ''}
                             className={ completedLessons.includes(lesson.id) || completedLessons.includes(lesson.id-1) || (completedLessons.length === 0 && lesson.id === 1) ? 'lesson' : 'lesson disabled'}
                             key={lesson.id}>
                             Lesson {lesson.id} <br />
