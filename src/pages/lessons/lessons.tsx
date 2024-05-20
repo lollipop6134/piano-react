@@ -1,78 +1,103 @@
 import './lessons.css';
 import { Footer } from '../../components/footer/footer';
 import { Link } from 'react-router-dom';
-import { supabase } from '../../supabaseClient';
 import { useEffect, useState } from 'react';
+import { useAuth } from '../../UserContext';
+import axios from 'axios';
 
 interface Lesson {
     id: number,
     subtitle: string;
 }
 
-interface LessonsProps {
-    session: any;
-}
-
-export function Lessons({ session }: LessonsProps) {
+export function Lessons() {
 
     const [lessonPages, setLessonPages] = useState<Lesson[]>([]);
-    const [completedLessons, setCompletedLessons] = useState<number[]>([]);
+    const { user } = useAuth();
+    const [searchTerm, setSearchTerm] = useState('');
 
-    async function getCompletedLessons() {
-        if (session && session.user) {
-            const { data, error } = await supabase
-            .from('Users')
-            .select('completedLessons')
-            .eq('email', session.user.email)
-            .single();
-    
-            if (error) {
-                alert(error.message);
-            } else {
-                setCompletedLessons(data?.completedLessons || []);
-            }
-        }
+    const isUnlocked = (lessonId: number) => {
+        if (user?.completedlessons.includes(lessonId) || user?.completedlessons.includes(lessonId-1) 
+            || (!user?.completedlessons.length && lessonId === 1 ) || user?.status === 'admin') return true;
+        return false;
     }
 
     useEffect(() => {
-        getCompletedLessons();
-    }, [session])
+        fetch('http://localhost:3001/lessons')
+          .then(response => response.json())
+          .then(data => setLessonPages(data))
+          .catch(error => console.error('Error:', error));
+    }, []);
 
-    useEffect(() => {
-        getLessonPages();
-    }, [])
+    const deleteLesson = async (lessonId: number) => {
+        try {
+            const response = await axios.post(`http://localhost:3001/deleteLesson`, { lessonId });
+            return response.data;
+        } catch (error) {
+            console.error('Error deleting lesson: ', error);
+            throw error;
+        } finally {
+            window.location.reload();
+        }
+    };
 
-    async function getLessonPages() {
-        const { data } = await supabase.from("Lessons").select(`id, subtitle`);
-        setLessonPages(data || []);
+    async function addLesson(lessonId: number) {
+        try {
+            const response = await axios.post(`http://localhost:3001/addLesson`, {lessonId});
+            return response.data;
+        } catch (error) {
+            console.error('Error deleting lesson: ', error);
+            throw error;
+        } finally {
+            window.location.reload();
+        }
+    };
+
+    const LessonComponent = ({ lesson }: { lesson: Lesson }) => {
+        const [isSure, setIsSure] = useState(false);
+
+        return (
+            <div className={isUnlocked(lesson.id) ? 'lesson' : 'lesson disabled'} key={lesson.id}>
+                <Link to={isUnlocked(lesson.id) ? `/lesson/${lesson.id}` : ''} >
+                    Lesson {lesson.id} <br />
+                    {lesson.subtitle}
+                </Link>
+                {user?.status === 'user' && user?.completedlessons.includes(lesson.id) && <div id="complete">Complete!</div>}
+                {user?.status === 'admin' &&
+                    <div id='lessonIcons'>
+                        <Link to={`/lesson/${lesson.id}/constructor`}>Edit</Link>
+                        {!isSure ? <button onClick={() => setIsSure(true)}>Delete</button> :
+                            <button onClick={() => deleteLesson(lesson.id)} style={{color: 'beige'}}>Sure?</button>}
+                    </div>}
+            </div>
+        );
+    };
+
+    function getMaxId(): number {
+        const lessonIds = lessonPages.map(lesson => lesson.id);
+        return Math.max(...lessonIds);
     }
 
     return (
         <>
-        {session !== null ? <>
-        {lessonPages.length < 1 && <div id='preloader'> Just a moment <div id='loader'></div></div>}
+            <input
+                type="text"
+                className='lessonSearch'
+                placeholder="Search by title &#128269;"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            {lessonPages.length < 1 && <div id='preloader'> Just a moment <div id='loader'></div></div>}
             <div className='lessons'>
-                {lessonPages
-                    .sort((a, b) => a.id - b.id)
-                    .map((lesson) => (
-                        <Link
-                            to={ completedLessons.includes(lesson.id) || completedLessons.includes(lesson.id-1) ? `/lesson/${lesson.id}` : ''}
-                            className={ completedLessons.includes(lesson.id) || completedLessons.includes(lesson.id-1) ? 'lesson' : 'lesson disabled'}
-                            key={lesson.id}>
-                            Lesson {lesson.id} <br />
-                            {lesson.subtitle}
-                            {completedLessons.includes(lesson.id) && <div id="complete">Complete!</div>}
-                        </Link>
-                    ))}
+            {lessonPages
+                .filter(lesson => lesson.subtitle.toLowerCase().includes(searchTerm.toLowerCase()))
+                .sort((a, b) => a.id - b.id)
+                .map((lesson) => (
+                <LessonComponent key={lesson.id} lesson={lesson} />
+            ))}
+                {user?.status === 'admin' && <button id='addLesson' onClick={() => addLesson(getMaxId()+1)}>+</button>}
             </div>
             <Footer />
-        </> :
-        <>
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '75vh'}}>
-        <Link to={"/account"} className='main-button'>Sign In to start lessons!</Link>
-        </div>
-        <div className='bottom'><Footer /></div>
-        </>}
         </>
     )
 }

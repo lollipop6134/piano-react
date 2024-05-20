@@ -1,106 +1,116 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../../supabaseClient';
 import { Footer } from '../../components/footer/footer';
 import "./account.css"
+import { logout, changeUsername, changeAvatar } from '../../AuthService';
+import { useAuth } from '../../UserContext';
+import axios from 'axios';
 
-interface AccountProps {
-  session: any;
-}
-
-export default function Account({ session }: AccountProps) {
+export default function Account() {
+  const { user } = useAuth();
   const [username, setUsername] = useState<string | null>(null);
-  const [id, setId] = useState<number | null>(null);
+  const [image, setImage] = useState<string | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [countLessons, setCountLessons] = useState(0);
-  const [countCompletedLessons, setCountCompletedLessons] = useState(0);
+  const [completedlessons, setCompletedLessons] = useState<number[] | null>(null);
 
-
+  const handleLogout = () => {
+    logout();
+    window.location.reload();
+  };
+    
   useEffect(() => {
-
-    async function getProfile() {
-
-      const { data, error } = await supabase
-        .from('Users')
-        .select(`id, username, completedLessons`)
-        .eq('email', session.user.email)
-        .single();
-
-        if (error) {
-          alert(error.message);
-        } else if (data) {
-          setId(data.id);
-          setUsername(data.username);
-          setCountCompletedLessons(data.completedLessons.length);
-        }
-    }
-
-    async function getLessons() {
-
-      const { data, error } = await supabase
-      .from('Lessons')
-      .select(`id`);
-
-      if (error) {
-        alert(error.message);
-      } else if (data) {
-        setCountLessons(data.length);
-      }
-    }
-
-    getProfile();
-    getLessons();
-  }, [session]);
-
-  async function updateProfile(event: React.FormEvent) {
-    event.preventDefault();
-
-    const updates = {
-      username: username,
+    if (user) {
+      setUsername(user.username || '');
+      setCompletedLessons(user.completedlessons);
+      setImage(user.image);
+      fetch('http://localhost:3001/lessons')
+        .then(response => response.json())
+        .then(data => {
+          setCountLessons(data.length);
+        })
+        .catch(error => console.error('Error:', error));
     };
+  }, [user]);
 
-    const { error } = await supabase.from('Users').update(updates).match({id: id})
-
-    if (error) {
-      alert(error.message);
-    } else {
-      alert(`OK!`)
+  const handleChanges = async () => {
+    if (username !== user?.username) {
+      await changeUsername(user!.user_id, username!);
     }
-  }
+    if (image !== user?.image) {
+      const formData = new FormData();
+      formData.append('image', imageFile!);
+      try {
+        await axios.post('http://localhost:3001/uploadUsers', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        await changeAvatar(user!.user_id, image!);
+        alert('The changes have been saved successfully!');
+        window.location.reload();
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        alert('Error uploading file. Please try again.');
+      }
+    } else {
+      alert('The changes have been saved successfully!');
+      window.location.reload();
+    }
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = event.target.files;
+    if (fileList && fileList.length > 0) {
+      const selectedFile = fileList[0];
+      setImageUrl(URL.createObjectURL(selectedFile));
+      setImage(selectedFile.name);
+      setImageFile(selectedFile);
+    }
+  };
 
   return (
     <>
-      <form onSubmit={(e) => {updateProfile(e)}} >
-      <div id='accountInputs'>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="text"
-            value={session.user.email}
-            disabled
-          />
+      <div id="userForm">
+        <div id='loadImage'>
+        <img src={imageUrl || (image === user?.image ? `/images/users/${user.image}` : image!)} alt="avatar" className='main_img' />
+          <input type='file' onChange={handleFileChange} accept='image/*'></input>
+          <span>Choose Image</span>
         </div>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            id="username"
-            type="text"
-            required
-            value={username || ''}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          <div id='userInformation'>
+          <div id='accountInputs'>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                type="text"
+                value={user?.email || ''}
+                disabled
+              />
+            </div>
+            <div>
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                type="text"
+                required
+                value={username || ''}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+          </div>
+          <div id='progress'>
+            Your progress: {`${completedlessons?.length || 0}/${countLessons} (${Math.round(((completedlessons?.length || 0) / countLessons) * 100)}%)`}
+          </div>
+          <div id='accountButtons'>
+            <button disabled={username === user?.username && image === user?.image} type="button" onClick={handleChanges}>Save changes</button>
+            <button onClick={handleLogout}>Log Out</button>
+          </div>
         </div>
       </div>
-      <div id='progress'>
-        Your progress: {countCompletedLessons}/{countLessons} ({Math.round(countCompletedLessons/countLessons*100)}%)
+      <div className='bottom'>
+        <Footer />
       </div>
-      <div id='accountButtons'>
-        <button type="submit">Update</button>
-        <button type="button" onClick={() => supabase.auth.signOut()}>Sign Out</button>
-      </div>
-    </form>
-    <div className='bottom'>
-      <Footer />
-    </div>
     </>
   );
 }

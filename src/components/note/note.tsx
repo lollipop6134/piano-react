@@ -1,4 +1,3 @@
-import React from "react";
 import styled from 'styled-components'
 
 const Black = styled.button`
@@ -40,20 +39,20 @@ const White = styled.button`
     }
 `
 
-type Props = {
-    id: string;
-    color: string;
+export type NoteProps = {
     note: string;
-    clickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    color: string;
     keyboard: string;
+    clickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Note: React.FC<Props> = ({ color, note, clickHandler, keyboard }) => {
+const Note: React.FC<NoteProps> = ({ note, color, keyboard, clickHandler}) => {
+
     return (
         color === 'white' ? (
-            <White value={note} onClick={clickHandler} id={note}>{keyboard}</White>
+            <White value={note} onMouseDown={clickHandler} id={note.trim()}>{keyboard}</White>
         ) : (
-            <Black value={note} onClick={clickHandler} id={note}>{keyboard}</Black>
+            <Black value={note} onMouseDown={clickHandler} id={note.trim()}>{keyboard}</Black>
         )
     )
 }

@@ -1,27 +1,25 @@
 import './piano.css';
-import { NoteType } from '../../data/notes';
 import Note from '../note/note';
-import { supabase } from '../../supabaseClient';
+import { NoteProps } from '../note/note';
 
 type Props = {
-  notes: NoteType[];
+  pianoNotes: NoteProps[];
   clickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Piano: React.FC<Props> = ({ notes, clickHandler }) =>{
+const Piano: React.FC<Props> = ({ pianoNotes, clickHandler }) =>{
 
     return (
         <>
-            <div id="rotate">Please, rotate your phone<img src='/images/RotatePhone.png' /></div>
+            <div id="rotate">Please, rotate your phone<img src='/images/RotatePhone.png' alt='rotate phone' /></div>
             <div id="piano">
-                {notes.map((element: NoteType) => (
+                {pianoNotes.map((element: NoteProps) => (
                   <Note
-                    id={element.note}
+                    note={element.note}
                     key={element.note}
                     color={element.color}
-                    note={element.note}
                     clickHandler={clickHandler}
-                    keyboard={element.key}
+                    keyboard={element.keyboard}
                   />
                 ))}
             </div>

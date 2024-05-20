@@ -67,7 +67,7 @@
     width: 43%;
 }
 
-.main-button {
+.main-button, #playChordButton {
     border: none;
     background-color: #A65323;
     font-size: 1.2vw;
@@ -200,7 +200,7 @@
         width: 90%;
     }
     
-    .main-button {
+    .main-button, #playChordButton {
         font-size: 4.5vw;
         padding: 2vw 6vw;
         margin-top: 5vw;

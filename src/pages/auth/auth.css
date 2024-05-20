@@ -1,4 +1,4 @@
-form {
+#form, #userForm {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@ form {
     position: relative;
 }
 
-form input {
+#form input, #userForm input {
     border: none;
     background-color: #FCF8F2;
     border-bottom: 2px solid #8A4200;
@@ -24,7 +24,7 @@ form input {
     font-weight: bold;
 }
 
-form .header {
+#form .header {
     margin-bottom: 0;
 }
 
@@ -49,7 +49,7 @@ form .header {
     color: #8a3000be;
  }
 
-form button {
+#form button, #userForm button {
     font-size: 1.2vw;
     background-color: rgba(178, 34, 34, 0);
     color: #953700;
@@ -67,7 +67,7 @@ form button {
     font-weight: bold;
 }
 
-form button:hover {
+#form button:hover, #userForm button:hover {
     background-position: 0 0;
     color:#fff;
 }
@@ -179,23 +179,23 @@ input:-webkit-autofill:focus {
 }
 
 @media screen and (orientation: portrait) {
-    form {
+    #form, #userForm {
         width: 80vw;
         padding: 4vw 10vw;
         margin-top: 7vw;
     }
     
-    form p {
+    #form p, #userForm p {
         font-size: 7vw;
     }
     
-    form input {
+    #form input, #userForm input {
         border-bottom: 2px solid #8A4200;
         width: 95%;
         font-size: 6vw;
     }
     
-    form button {
+    #form button, #userForm button {
         font-size: 5vw;
         padding: 0.8vw 2vw;
         border: 1px solid #953700;
@@ -203,7 +203,7 @@ input:-webkit-autofill:focus {
         margin-bottom: 8vw;
     }
     
-    form span {
+    #form span, #userForm span {
         font-size: 4vw;
     }
     

@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
-import "./test.css"
+import "./testPage.css"
 import { Link } from "react-router-dom";
-import { supabase } from '../../supabaseClient';
+import { useAuth } from "../../UserContext";
+import axios from "axios";
 
-type Props = {
-  id: number;
-  session: any;
+type TestProps = {
+  lesson_id: number;
 };
 
 interface Test {
+  id: number;
+  lesson_id: number;
+  question_order: number;
   question: string;
-  answers: string[];
-  correctAnswer: string;
+  options: string[];
+  correct_answer: string;
   image: string;
 }
 
-const Test: React.FC<Props> = ({ id, session }) => {
+const TestPage: React.FC<TestProps> = ({ lesson_id }) => {
+  const { user } = useAuth();
   const [questionIndex, setQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [score, setScore] = useState(0);
@@ -26,41 +30,15 @@ const Test: React.FC<Props> = ({ id, session }) => {
   const completeImages = ['Capy1', 'Capy2', 'Capy3', 'Capy4', 'Capy5', 'Capy6', 'Capy7'];
   const completeImage = completeImages[Math.floor(Math.random() * completeImages.length)];
 
-  async function getTest() {
-    const { data } = await supabase.from("Test_1").select();
-    setTest(data);
-}
-
-useEffect(() => {
-      getTest();
-}, [])
-
-async function addToCompletedLessons() {
-  const { data, error } = await supabase
-  .from('Users')
-  .select('completedLessons')
-  .eq('email', session.user.email);
-
-  if (error) {
-      alert(error.message)
-  } else {
-      const currentCompletedLessons = data?.[0].completedLessons || [];
-
-      if (!currentCompletedLessons.includes(id)) {
-      const updatedCompletedLessons = [...currentCompletedLessons, id];
-      const { error } = await supabase
-      .from('Users')
-      .update({ completedLessons: updatedCompletedLessons})
-      .eq('email', session.user.email)
-    
-      if (error) {
-          alert(error.message)
-      }
-      }
-}}
+  useEffect(() => {
+    fetch(`http://localhost:3001/quizzes?lesson_id=${lesson_id}`)
+      .then(response => response.json())
+      .then(data => setTest(data as Test[]))
+      .catch(error => console.error('Error:', error));
+  }, []);
 
   const handleAnswer = (answer: string) => {
-    const correctAnswer = test?.[questionIndex].correctAnswer;
+    const correctAnswer = test?.[questionIndex].correct_answer;
     const isCorrect = answer === correctAnswer;
   
     if (isCorrect) {
@@ -76,11 +54,24 @@ async function addToCompletedLessons() {
       }, 1500);
     } else {
       if (test!.length / score < 2 ) {
-        addToCompletedLessons()
+        addToCompletedLessons();
       }
       setTimeout(() => {
         setTestCompleted(true);
       }, 1500);
+    }
+  };
+
+  const addToCompletedLessons = async () => {
+    if (!user?.completedlessons.includes(lesson_id)) {
+      user?.completedlessons.push(lesson_id);
+    }
+    const userId = user?.user_id;
+    try {
+      const response = await axios.post(`http://localhost:3001/completeLesson`, { userId, "lessonId": lesson_id });
+      return response.status;
+    } catch (error) {
+      console.error('Cannot update completed lessons', error);
     }
   };
 
@@ -91,13 +82,13 @@ async function addToCompletedLessons() {
           <div id="question">{questionIndex+1}. {test?.[questionIndex].question}</div>
           <img src={`/images/${test?.[questionIndex].image}.webp`} alt="question" id="testImage" />
           <div id="answers">
-          {test?.[questionIndex].answers.map((answer, index) => (
+          {test?.[questionIndex].options.map((option, index) => (
             <button
             key={index}
-            onClick={() => handleAnswer(answer)}
-            className={correctlyAnswered === null ? '' : (answer === test?.[questionIndex].correctAnswer ? 'correct' : 'incorrect')}
+            onClick={() => handleAnswer(option)}
+            className={correctlyAnswered === null ? '' : (option === test?.[questionIndex].correct_answer ? 'correct' : 'incorrect')}
             >
-              {answer}
+              {option}
             </button>
           ))}
           </div>
@@ -106,9 +97,9 @@ async function addToCompletedLessons() {
         <div className="container column">
             <div id="question">{(test!.length / score) < 2 ? "Test complete!" : "You can do better!"}</div>
             {(test!.length / score) < 2 ? (
-            <img src={`images/${completeImage}.webp`} id="completeImage" alt="Cute Capy"/>
+            <img src={`/images/${completeImage}.webp`} id="completeImage" alt="Cute Capy"/>
             ) : (
-            <img src='images/notFound.png' alt="sad capy" id="sadCapy"/>
+            <img src='/images/notFound.png' alt="sad capy" id="sadCapy"/>
             )}
             <div>Your score: {score}/{test!.length}</div>
             <Link to="/lessons" className="main-button" onClick={() => {localStorage.setItem('practiceMode', "false")}}>Lessons</Link>
@@ -118,4 +109,4 @@ async function addToCompletedLessons() {
   );
 };
 
-export default Test;
+export default TestPage;

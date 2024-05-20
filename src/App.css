@@ -9,6 +9,25 @@ body {
   margin: 0vw 13vw;
 }
 
+::-webkit-scrollbar {
+  width: 1.5vmin;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+  margin-right: 1vmin;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #5F2300;
+  border-radius: 5px;
+  cursor: auto;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #5f2300d4;
+}
+
 img {
   user-select: none;
 }

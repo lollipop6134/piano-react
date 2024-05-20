@@ -1,21 +1,11 @@
 import { Footer } from '../../components/footer/footer';
 import './main.css';
 import { Link } from 'react-router-dom';
-import { supabase } from '../../supabaseClient';
-import { useState } from 'react';
-
 
 export function Main() {
 
-    const [loading, setLoading] = useState(true);
-
-    setTimeout(() => {
-        setLoading(false);
-    }, 300);
-
     return (
         <>
-            {loading && <div id='preloader'> Just a moment <div id='loader'></div></div>}
             <div className='content'>
                 <div id="section1" className='container row'>
                 <img src='/images/Vector1.png' alt="vector1" className='vector'/>
@@ -24,7 +14,7 @@ export function Main() {
                             Be like Capy. Be cool. Play the Piano.
                         </div>
                         <div className="description">
-                            Discover the joy of playing piano with our interactive lessons. Unlock your musical potential with PianoCapy!
+                            Discover the joy of playing piano with our interactive lessons. Unlock your musical potential with Capyano!
                         </div>
                         <Link to={"/lessons"}><button className='main-button'>Try Now!</button></Link>
                     </div>
@@ -37,7 +27,7 @@ export function Main() {
                             Learn and Play the Piano
                         </div>
                         <div className='description'>
-                            Immerse yourself in the world of piano with PianoCapy. Explore interactive lessons and unleash your musical talent. Join us today!
+                            Immerse yourself in the world of piano with Capyano. Explore interactive lessons and unleash your musical talent. Join us today!
                         </div>
                     </div>
                 </div>
@@ -90,10 +80,10 @@ export function Main() {
                 <div id="section5" className='container column'>
                     <img src='/images/Vector3.png' alt="vector 3" className='vector'/>
                     <div className='header'>
-                        About PianoCapy
+                        About Capyano
                     </div>
                     <div className='description'>
-                        PianoCapy is a dynamic online platform that aims to make learning the piano accessible and enjoyable for everyone.
+                        Capyano is a dynamic online platform that aims to make learning the piano accessible and enjoyable for everyone.
                         With our user-friendly interface and colorful design, you'll be immersed in a world of music from the moment you start playing.
                     </div>
                 </div>

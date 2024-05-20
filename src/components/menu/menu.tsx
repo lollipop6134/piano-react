@@ -1,6 +1,5 @@
 import './menu.css';
 import { Link, Outlet } from 'react-router-dom';
-import { supabase } from '../../supabaseClient';
 
 export function Menu() {
     return (
@@ -10,6 +9,7 @@ export function Menu() {
                 <Link to="/"><img src='/images/logo.png' alt='logo'></img></Link>
                 <Link to="/piano"><button>Piano</button></Link>
                 <Link to="/lessons" onClick={() => {localStorage.setItem('practiceMode', "false")}}><button>Lessons</button></Link>
+                <Link to="/chords"><button>Chords</button></Link>
             </div>
             <Link to="/account"><button>Account</button></Link>
         </div>

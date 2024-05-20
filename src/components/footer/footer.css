@@ -13,7 +13,7 @@
 }
 
 #footer img {
-    width: 6vw;
+    width: 4.5vw;
 }
 
 #socials img {
@@ -34,7 +34,7 @@
     }
     
     #footer img {
-        width: 16vw;
+        width: 14vw;
     }
     
     #socials img {
@@ -45,5 +45,11 @@
     
     #socials img:hover {
         transform: translateY(-0.6vw);
+    }
+}
+
+@media print {
+    #footer {
+        display: none;
     }
 }

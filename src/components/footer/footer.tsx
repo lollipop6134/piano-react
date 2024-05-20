@@ -1,6 +1,5 @@
 import './footer.css';
 import { Link } from 'react-router-dom';
-import { supabase } from '../../supabaseClient';
 
 export function Footer() {
     return (
