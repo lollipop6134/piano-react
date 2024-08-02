@@ -1,0 +1,197 @@
+#chord {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #5F2300;
+    width: 30%;
+    margin: 1vw;
+}
+
+#chord img {
+    border: 0.2vw solid #5F2300;
+    border-radius: 5px;
+    margin-bottom: -1vw;
+    object-fit: cover;
+    width: 100%;
+    height: 15vw;
+    object-fit:contain;
+    object-position: center;
+}
+
+#chords {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1vw;
+    margin-bottom: 3vw;
+}
+
+#chord input {
+    background-color: antiquewhite;
+    border: 0.1vw solid #5F2300;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.5vw;
+    color: #5F2300;
+    font-weight: bolder;
+    margin-bottom: 0.5vw;
+    margin-top: 0.5vw;
+}
+
+#loadImageChord h3 {
+    margin-top: -2.7vw;
+    color: antiquewhite;
+    pointer-events: none;
+    font-size: 1.3vw;
+    margin-bottom: 0vw;
+}
+
+#loadImageChord input {
+    width: 100%;
+    border: none;
+    margin-top: 0.7vw;
+}
+
+#loadImageChord img {
+    object-fit:contain;
+    object-position: center;
+}
+
+#addChord {
+    font-size: 3vw;
+    background-color: #58C189;
+    border: 0.3vw solid #5F2300;
+    border-radius: 5px;
+    padding: 0.5vw 0.5vw 0.3vw 0.5vw;
+    cursor: pointer;
+    transition: 0.5s;
+    color: beige;
+    height: 3.3vw;
+    display: flex;
+    align-items: center;
+    font-family:Arial, Helvetica, sans-serif;
+    align-self: center;
+}
+
+#playChordButton {
+    margin-top: 1vw;
+}
+
+#deleteChord, #editChord, #deleteQuizze {
+    width: 47%;
+    border-radius: 5px;
+    border: 0.2vmin solid #5F2300;
+    color:#5F2300;
+    font-weight: bolder;
+    cursor: pointer;
+    font-size: 1.3vw;
+    margin-top: 1vw;
+}
+
+#deleteChord, #deleteQuizze {
+    background-color: rgb(241, 104, 104);
+}
+
+#editChord {
+    background-color: #58a5c1;
+    margin-left: 3%;
+}
+
+#chordButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#searchChord {
+    margin: 1vw 0 0 0;
+}
+
+#printChords {
+    font-size: 1.2vw;
+    margin-left: 2vw;
+    margin-top: 1vw;
+    font-family: 'Dhyana', sans-serif;
+    background-color: #5F2300;
+    color: antiquewhite;
+    font-weight: bolder;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5vw 1vw;
+    cursor: pointer;
+}
+
+@media screen and (orientation: portrait) {
+    #chord {
+        width: 95%;
+        margin: 2vw;
+    }
+
+    #chord img {
+        border: 0.5vw solid #5F2300;
+        margin-bottom: -2vw;
+        height: 50vw;
+    }
+
+    #chord input {
+        border: 0.3vw solid #5F2300;
+        font-size: 5.5vw;
+        margin-bottom: 2vw;
+        margin-top: 1vw;
+    }
+
+    #loadImageChord h3 {
+        margin-top: -11vw;
+        color: antiquewhite;
+        pointer-events: none;
+        font-size: 5vw;
+        margin-bottom: 0vw;
+    }
+
+    #loadImageChord input {
+        margin-top: 2.5vw;
+        border: none;
+    }
+
+    #chords {
+        margin-bottom: 15vw;
+    }
+
+    #addChord {
+        font-size: 11vw;
+        border: 0.7vw solid #5F2300;
+        padding: 5vw 2.3vw 5vw 2.3vw;
+    }
+
+    #playChordButton {
+        margin-top: 3vw;
+        font-size: 5vw;
+    }
+
+    #deleteChord, #editChord {
+        width: 47%;
+        border: 0.4vmin solid #5F2300;
+        font-size: 5vw;
+        margin-top: 2vw;
+    }
+
+    #printChords {
+        font-size: 5vw;
+        margin-left: 0;
+        margin-top: 3vw;
+        padding: 2vw 4vw;
+    }
+}
+
+@media print {
+    #searchChord, #printChords, #addChord, #loadImageChord input, #loadImageChord h3, #chordButtons, #playChordButton {
+        display: none;
+    }
+
+    body {
+        width: 95%;
+        margin-left: 2.5%;
+    }
+}

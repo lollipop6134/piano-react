@@ -1,0 +1,87 @@
+#pianoEditor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2vw;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+#noteEditor {
+    width: 30%;
+    text-align: center;
+    font-size: 1.5vw;
+    font-weight: bolder;
+    color: #8C4E2A;
+    display: flex;
+    flex-direction: column;
+}
+
+#noteEditor h5 {
+    line-height: 1.7vw;
+    margin-top: -2.1vw;
+    color:rgb(249, 240, 228);
+    pointer-events: none;
+}
+
+#noteEditor input {
+    margin-top: 1vw;
+    height: 2.5vw;
+}
+
+#noteEditor input::file-selector-button {
+    height: 2.5vw;
+}
+
+#editNote {
+    background-color: rgb(92, 130, 197);
+    font-size: 1.2vw;
+    padding: 0.3vw;
+    border: none;
+    border-radius: 5px;
+    font-weight: bolder;
+    width: 100%;
+    margin-top: -0.7vw;
+    color: rgb(27, 40, 62);
+    cursor: pointer;
+}
+
+#playChordButton:disabled {
+    background-color: #8c4e2a96;
+    pointer-events: none;
+    color: rgba(240, 248, 255, 0.725);
+}
+
+@media screen and (orientation: portrait) {
+    #pianoEditor {
+        flex-direction: column;
+        margin-top: 3vw;
+        width: 95%;
+    }
+    
+    #noteEditor {
+        width: 100%;
+        font-size: 5vw;
+    }
+    
+    #noteEditor h5 {
+        line-height: 0vw;
+        font-size: 5vw;
+        margin-top: -5.2vw;
+    }
+    
+    #noteEditor input {
+        margin-top: 2vw;
+        height: 10vw;
+    }
+    
+    #noteEditor input::file-selector-button {
+        height: 10vw;
+    }
+    
+    #editNote {
+        font-size: 5vw;
+        padding: 0.5vw;
+    }
+}

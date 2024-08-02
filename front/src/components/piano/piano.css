@@ -1,0 +1,104 @@
+#piano {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 42%;
+    width: 100%;
+    user-select: none;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+#rotate {
+    display: none;
+}
+
+#instruments {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-top: 1vw;
+    flex-wrap: wrap;
+    font-size: 1.5vw;
+    color:#5F2300;
+    font-weight: bolder;
+    align-items: center;
+}
+
+#instrument input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+#instrument {
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 0.4vw 1.5vw;
+    border: 0.2vw solid antiquewhite;
+    border-radius: 5px;
+}
+
+#instruments a {
+    color:#5F2300;
+}
+
+#instruments label.active {
+    border: 0.2vw solid #5F2300;
+    border-radius: 5px;
+}
+
+#uploadNotes {
+    width: auto;
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+#pianoPage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#pianoPage a {
+    color:aliceblue;
+}
+
+#errorNote {
+    font-weight: bolder;
+    color: rgb(221, 81, 0);
+    font-size: 1.5vw;
+    margin-top: 1vw;
+}
+
+#CapyWalk {
+    position: absolute;
+    width: 9vw;
+    bottom: 41.8%;
+    transition: left 0.3s linear; /* Плавное движение */
+}
+
+@media screen and (orientation: portrait) {
+    #piano, #instruments, #uploadNotes, #CapyWalk {
+        display: none;
+    }
+
+    #rotate {
+        display: flex;
+        flex-direction: column;
+        color: #582406;
+        font-size: 5vw;
+        font-weight: bold;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        height: 100vw;
+    }
+
+    #rotate img {
+        width: 20vw;margin-top: 10vw;
+    }
+}
