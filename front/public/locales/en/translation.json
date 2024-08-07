@@ -157,5 +157,9 @@
     "password-email-send": "Check your email to reset your password!",
     "password-email-error": "Error when sending a password reset email!",
     "incorrect-password": "Incorrect password!",
-    "special-symbols": "The inputs must'nt contain special characters!"
+    "special-symbols": "The inputs must'nt contain special characters!",
+    "answer-comment": "Reply comment",
+    "replying-to": "Reply to: ",
+    "hide-replies": "Hide replies",
+    "open-replies": "Open replies"
 }

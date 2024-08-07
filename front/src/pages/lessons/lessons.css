@@ -15,7 +15,6 @@
     margin: 1% 1.1%;
     padding: 2%;
     text-align: center;
-    align-items: center;
     font-size: 1.05vw;
     font-weight: bold;
     color: #5F2300;
@@ -38,8 +37,9 @@
 }
 
 #complete {
-    margin-top: 0.5vw;
+    margin-top: 0.3vw;
     margin-bottom: -1.8vw;
+    margin-left: -15.5%;
     width: 131%;
     color: white;
     background-color: #58C189;
@@ -53,7 +53,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
 }
 
 .lesson a {
@@ -66,13 +65,13 @@
 }
 
 #lessonIcons button, #lessonIcons a {
-    width: 47%;
+    width: 48%;
     border-radius: 3px;
     border: 0.2vw solid #5F2300;
     color:#5F2300;
     font-weight: bolder;
     cursor: pointer;
-    font-size: 95%;
+    font-size: 85%;
 }
 
 #lessonIcons a {
@@ -158,8 +157,9 @@
     }
 
     #complete {
-        margin-bottom: -4.5vw;
+        margin-bottom: -4.9vw;
         width: calc(100% + 9.5vw);
+        margin-left: -4.75vw;
         border: 0.8vmin solid #5F2300;
     }
 

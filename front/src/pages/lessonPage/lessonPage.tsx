@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './lessonPage.css';
 import { useParams } from 'react-router-dom';
 import { Footer } from '../../components/footer/footer';
@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n';
 import { source } from '../../source';
+import Comment from '../../components/comment/comment';
 
 export interface Lesson {
     id: number;
@@ -37,6 +38,9 @@ export function LessonPage() {
     const { user } = useAuth();
     const [isOldComments, setIsOldComments] = useState(false);
     const { t } = useTranslation();
+    const [replyTo, setReplyTo] = useState<string | null>(null);
+    const [replyToId, setReplyToId] = useState<number | null>(null);
+    const commentInputRef = useRef<HTMLTextAreaElement | null>(null);
 
     const formatRelativeTime = (createdAt: string) => {
         const currentDate = new Date();
@@ -113,9 +117,10 @@ export function LessonPage() {
     };
 
     const addComment = async (newComment: string) => {
+        const parent_id = replyToId;
         try {
             const userId = user!.user_id;
-            const response = await axios.post(`${source}/addComment`, { newComment, id, userId });
+            const response = await axios.post(`${source}/addComment`, { newComment, id, userId, parent_id });
             const addedComment = response.data;
             setLesson(prevLesson => {
                 if (!prevLesson || !Array.isArray(prevLesson.comments)) {
@@ -128,9 +133,52 @@ export function LessonPage() {
                 };
             });
             setNewComment('');
+            setReplyTo(null);
+            setReplyToId(null);
         } catch (error) {
             console.error('Error adding comment: ', error);
         }
+    };
+
+    const answerComment = (username: string, id: number) => {
+        setReplyTo(username);
+        setReplyToId(id);
+        if (commentInputRef.current) {
+            commentInputRef.current.focus();
+        }
+        setNewComment(`${username}, `);
+    };
+
+    const closeReply = () => {
+        setReplyTo(null);
+        setReplyToId(null);
+        setNewComment('');
+    };
+
+    const buildCommentsTree = (comments: any[], parentId: number | null = null) => {
+        if (comments) {
+            return comments
+            .filter(comment => comment.parent_id === parentId)
+            .map(comment => ({
+                ...comment,
+                replies: buildCommentsTree(comments, comment.comment_id)
+            }));
+        } else {
+            return [];
+        }
+    };
+
+    const renderComments = (commentsTree: any[]) => {
+        return commentsTree.map((comment: any, index: number) => (
+            <Comment
+                key={index}
+                comment={comment}
+                formatRelativeTime={formatRelativeTime}
+                answerComment={answerComment}
+                deleteComment={deleteComment}
+                renderReplies={renderComments}
+            />
+        ));
     };
 
     if (!id || !lesson) {
@@ -144,6 +192,8 @@ export function LessonPage() {
             </>
         );
     }
+
+    const commentsTree = buildCommentsTree(lesson.comments);
 
     return (
         <>
@@ -197,11 +247,13 @@ export function LessonPage() {
                         <button onClick={() => window.print()} className='print-button'>{t('print-lesson')}</button>
                     </div>
                     {isComments && <div id='comments-container'>
-                        { user && <div id='addComment'>
-                            <textarea 
-                                placeholder={t('write-comment')} 
+                        {user && <div id='addComment'>
+                            <textarea
+                                placeholder={t('write-comment')}
                                 value={newComment || ''}
-                                onChange={(e) => setNewComment(e.target.value)}></textarea>
+                                onChange={(e) => setNewComment(e.target.value)}
+                                ref={commentInputRef}></textarea>
+                            {replyTo && <div id='replyingTo'>{t('replying-to')} {replyTo} <button onClick={closeReply}>✖</button></div>}
                             <button
                                 className='main-button'
                                 disabled={newComment === null || newComment === ''}
@@ -209,35 +261,18 @@ export function LessonPage() {
                                 {t('send-comment')}
                             </button>
                         </div>}
-                        <div style={{userSelect: "none", marginTop: "1vw"}}>
+                        <div style={{ userSelect: "none", marginTop: "1vw" }}>
                             {t('sort')} &nbsp;
                             <strong id='sort-comments'
                                 onClick={() => setIsOldComments(!isOldComments)}>
                                 {isOldComments ? t('old') : t('new')}
                             </strong>
                         </div>
-                        <div id='comments' style={{ display: "flex", flexDirection: isOldComments ? "column" : "column-reverse"}}>
-                            {lesson.comments?.map((comment: any, index: number) => (
-                                <div id='comment_container' key={index}>
-                                    <div id='comment'>
-                                        <img id='comment_image' src={`/images/users/${comment.image}`} alt={`${comment.image}`}></img>
-                                        <div id='comment_info'>
-                                            <div>{comment.username}</div>
-                                            <div id='comment_text'>{comment.comment}</div>
-                                            <div id='comment_last'>
-                                                <div>{formatRelativeTime(comment.created_at)} {t('ago')}</div>
-                                                { (comment.user_id === user?.user_id || user?.status === 'admin') &&
-                                                <div id='comment_delete' onClick={() => deleteComment(comment.comment_id)}>
-                                                    {t('delete-comment')}
-                                                </div>}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+                        <div id='comments' style={{ display: "flex", flexDirection: isOldComments ? "column" : "column-reverse" }}>
+                            {renderComments(commentsTree)}
                         </div>
                     </div>}
-                    <div style={{marginTop: '3vw'}}>
+                    <div style={{ marginTop: '3vw' }}>
                         <Footer />
                     </div>
                 </>

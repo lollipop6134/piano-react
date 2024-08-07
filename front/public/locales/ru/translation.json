@@ -157,5 +157,9 @@
     "password-email-send": "Проверь почту для сброса пароля!",
     "password-email-error": "Ошибка при отправке письма сброса пароля!",
     "incorrect-password": "Неверный пароль!",
-    "special-symbols": "Поля ввода не могут содержать спец. символы!"
+    "special-symbols": "Поля ввода не могут содержать спец. символы!",
+    "answer-comment": "Ответить",
+    "replying-to": "Ответ: ",
+    "hide-replies": "Скрыть ответы",
+    "open-replies": "Показать ответы"
 }

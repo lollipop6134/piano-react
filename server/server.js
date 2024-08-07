@@ -45,7 +45,8 @@ app.get(`${backendStart}/lessons`, async (req, res) => { //ОК
               'created_at', lc.created_at,
               'image', u.image,
               'comment_id', lc.comment_id,
-              'user_id', u.user_id
+              'user_id', u.user_id,
+              'parent_id', lc.parent_id
         )) 
         FROM lessoncomments lc
         JOIN users u ON lc.user_id = u.user_id
@@ -590,18 +591,17 @@ app.post(`${backendStart}/deleteComment`, async (req, res) => { //ОК
 
 app.post(`${backendStart}/addComment`, async (req, res) => {
   const connection = await pool.getConnection();
-  const { userId, id, newComment } = req.body;
-
+  const { userId, id, newComment, parent_id } = req.body;
   try {
     // Вставляем новый комментарий в базу данных
     const [result] = await connection.execute(
-      'INSERT INTO lessoncomments (user_id, lesson_id, comment) VALUES (?, ?, ?)',
-      [userId, id, newComment]
+      'INSERT INTO lessoncomments (user_id, lesson_id, comment, parent_id) VALUES (?, ?, ?, ?)',
+      [userId, id, newComment, parent_id]
     );
     const commentId = result.insertId;
     // Извлекаем данные нового комментария вместе с данными пользователя
     const [rows] = await connection.execute(
-      `SELECT lc.comment_id, lc.comment, lc.created_at, u.username, u.image, lc.user_id
+      `SELECT lc.comment_id, lc.comment, lc.created_at, u.username, u.image, lc.user_id, lc.parent_id
        FROM lessoncomments lc
        JOIN users u ON lc.user_id = u.user_id
        WHERE lc.comment_id = ?`,
